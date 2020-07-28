@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JVM学习之字符串常量池和垃圾收集算法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。 剑指Offer 9用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？ 12345678910111213141516171819202122232425262728&#x2F;&#x2F;用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？public class Offer9 &amp;#123;    public static void">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM学习之字符串常量池和垃圾收集算法">
+<meta property="og:url" content="https://zzz-blog.github.io/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。 剑指Offer 9用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？ 12345678910111213141516171819202122232425262728&#x2F;&#x2F;用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？public class Offer9 &amp;#123;    public static void">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200725213300169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-25T13:41:09.000Z">
+<meta property="article:modified_time" content="2020-07-26T02:26:31.089Z">
+<meta property="article:author" content="zzz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200725213300169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zzz-blog.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JVM学习之字符串常量池和垃圾收集算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-07-25T13:41:09.000Z" itemprop="datePublished">2020-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM学习之字符串常量池和垃圾收集算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。</p>
+<h2 id="剑指Offer-9"><a href="#剑指Offer-9" class="headerlink" title="剑指Offer 9"></a>剑指Offer 9</h2><p>用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer9</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Offer9 offer9 = <span class="keyword">new</span> Offer9();</span><br><span class="line">        <span class="keyword">int</span> i = offer9.rectCover(<span class="number">9</span>);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover</span><span class="params">(<span class="keyword">int</span> n )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rectCover(n - <span class="number">1</span>) + rectCover(n - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover1</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        a[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        a[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        a[<span class="number">2</span>]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;=n ; i++) &#123;</span><br><span class="line">            a[i]=a[i-<span class="number">1</span>]+a[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSplicing</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s1 =<span class="string">"java"</span>;</span><br><span class="line">        String s2 =<span class="string">"String"</span>;</span><br><span class="line">        String s3 = <span class="string">"javaString"</span>;</span><br><span class="line">        String s4 = s1+s2;</span><br><span class="line">        String s5 = s1+<span class="string">"String "</span>;</span><br><span class="line">        String s6 = <span class="string">"java"</span> + s2;</span><br><span class="line">        String s7 = <span class="string">"java"</span>+<span class="string">"String"</span>;</span><br><span class="line">        String s8 = s6.intern();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在字符串拼接的时候，如果两边有变量，相当于在堆中new了一个变量，所以内存地址不同false</span></span><br><span class="line">        System.out.println(s3==s4);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s5);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s6);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s7);<span class="comment">//true</span></span><br><span class="line">        <span class="comment">//intern（）会判断字符串常量池中是否有这个字符串，如果没有，则放入字符串常量池中，并加载一份javaString返回</span></span><br><span class="line">        <span class="comment">// 如果有则不放入，并返回字符串常量池中的javaString</span></span><br><span class="line">        System.out.println(s3==s8);<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>常量与常量的拼接结果在常量池，原理是编译期优化</li>
+<li>常量池中不会存在相同内容的变量</li>
+<li>只要其中有一个是变量，结果就在堆中。变量拼接的原理是StringBuilder</li>
+<li>如果拼接的结果调用intern()方法，则主动将常量池中还没有的字符串对象放入池中，并返回此对象地址</li>
+</ul>
+<p><strong>加上final修饰之后</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalStringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String s1 = <span class="string">"a"</span>;</span><br><span class="line">        <span class="keyword">final</span> String s2 = <span class="string">"b"</span>;</span><br><span class="line">        String s3 = <span class="string">"ab"</span>;</span><br><span class="line">        String s4 = s1+s2;</span><br><span class="line"></span><br><span class="line">        System.out.println(s3 == s4);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>但是如果使用的是final修饰，则是从常量池中获取</strong>。所以说拼接符号左右两边都是字符串常量或常量引用 则仍然使用编译器优化，即用StringBuilder的方式。也就是说被final修饰的变量，将会变成常量，类和方法将不能被继承、</p>
+<h2 id="字符串拼接与StringBulider"><a href="#字符串拼接与StringBulider" class="headerlink" title="字符串拼接与StringBulider"></a>字符串拼接与StringBulider</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test06</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">100000</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//System.out.println(method1()); 5043mm</span></span><br><span class="line">        <span class="comment">//System.out.println(method2());4mm</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String s = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;i ; j++) &#123;</span><br><span class="line">            s+=<span class="string">"a"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">return</span> end - start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">method2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;i ; j++) &#123;</span><br><span class="line">            s.append(<span class="string">"a"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">return</span> end - start;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结论：</p>
+<ul>
+<li><p>通过StringBuilder的append()方式添加字符串的效率，要远远高于String的字符串拼接方法<br>好处</p>
+</li>
+<li><p>StringBuilder的append的方式，自始至终只创建一个StringBuilder的对象</p>
+</li>
+<li><p>对于字符串拼接的方式，还需要创建很多StringBuilder对象和 调用toString时候创建的String对象</p>
+</li>
+<li><p>内存中由于创建了较多的StringBuilder和String对象，内存占用过大，如果进行GC那么将会耗费更多的时间</p>
+</li>
+</ul>
+<h2 id="java垃圾回收机制"><a href="#java垃圾回收机制" class="headerlink" title="java垃圾回收机制"></a>java垃圾回收机制</h2><p>java中采用的是自动垃圾回收，无需开发人员动手清除出垃圾。这样降低内存泄漏和内存溢出的风险。<br><strong>java堆中的内容是垃圾回收的重点区域</strong><br>在回收的次数上：</p>
+<ul>
+<li>频繁收集年轻代</li>
+<li>较少收集老年代</li>
+<li>几乎不动元空间<h2 id="判断一个对象应该被回收"><a href="#判断一个对象应该被回收" class="headerlink" title="判断一个对象应该被回收"></a>判断一个对象应该被回收</h2></li>
+</ul>
+<p>1.该对象没有与GC Roots相连<br>2.没有引用指向该对象</p>
+<h2 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h2><p>引用计算算法是发生在标记阶段。在启动GC之前要先判断哪些是可以回收的垃圾对象<br><strong>如何判断一个对象已经死亡</strong>：：当一个对象不再被其他任何一个对象引用时。</p>
+<p><strong>具体实现：</strong>对每个对象保存一个整数型的引用计数器属性，用于记录对象被引用的情况。如果被对象引用就加1，引用玩失效就减1，如果对象的引用计数器的数值为0.则该对象就可以被回收。<br><strong>优点：</strong>实现简单，垃圾对象易于辨识，判定效率高<br><strong>缺点：</strong>计数器需要占用引用空间。加1减1操作消耗时间，最重要的时它不能解决循环引用这一问题。</p>
+<h2 id="可达性分析算法（根搜索算法，追踪性垃圾收集）"><a href="#可达性分析算法（根搜索算法，追踪性垃圾收集）" class="headerlink" title="可达性分析算法（根搜索算法，追踪性垃圾收集）"></a>可达性分析算法（根搜索算法，追踪性垃圾收集）</h2><ul>
+<li>可达性分析算法时以根对象集合为起点，按照从上到下的方式搜索被根对象集合所连接的目标对象是否可达。</li>
+<li>使用可达分析算法后，内存中的存活对象都会被根对象集合直接或间接的连接着，如果目标对象没有任何相连，则不可达，该对象已死亡，可被回收。</li>
+</ul>
+<p><strong>GC Roots包括以下几类</strong></p>
+<ul>
+<li>虚拟机栈中的引用对象</li>
+<li>本地方法栈内引用对象</li>
+<li>方法区中类静态属性引用对象</li>
+<li>方法区中常量引用的对象  如：字符串常量池</li>
+<li>所有被synchroni持有的对象</li>
+</ul>
+<h2 id="垃圾清除阶段算法值标记-清除算法（Mark-Sweep）"><a href="#垃圾清除阶段算法值标记-清除算法（Mark-Sweep）" class="headerlink" title="垃圾清除阶段算法值标记-清除算法（Mark-Sweep）"></a>垃圾清除阶段算法值标记-清除算法（Mark-Sweep）</h2><p><strong>执行过程：</strong>当堆中的有效空间被耗尽的时候，就会停止整个程序（Stop The World），然后进行两项工作标记和清除<br><strong>标记：</strong>垃圾收集器引用根节点开始遍历，标记所有被引用的对象<br><strong>清除：</strong>垃圾收集器对堆内存从头到尾进行线性遍历，如果某个对象没有标记为可达现象，则将其回收。<br><strong>缺点：</strong>效率不高，在进行GC的时候，需要停止整个应用程序，这种方式清理处来的空闲内存是不连续的。</p>
+<h2 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h2><p><strong>核心思想：</strong>将活着的内存空间分为两块，每次只使用其中的一块，在垃圾回收时将正在使用的内存的存活的对象复制到未被使用的内存块中。之后清除正在使用的内存快中的所有对象，交换两个内存的角色，最后完成垃圾回收。<br><strong>优点：</strong>没有标记和清除的过程，实项简单高效。<br><strong>缺点：</strong>需要占用的空间很大，如果存活的对象的很多，需要复制的操作就很多，效率就很低。还需要修改大量的引用</p>
+<h2 id="标记-压缩算法（标记-整理算法）"><a href="#标记-压缩算法（标记-整理算法）" class="headerlink" title="标记-压缩算法（标记-整理算法）"></a>标记-压缩算法（标记-整理算法）</h2><p><strong>执行过程：</strong>第一阶段和标记-清除算个发一样，从根节点开始标记所有被引用的对象第二阶段将所有的存活对象压缩到内存的一段，按顺序存放。</p>
+<p>执行的效果相当于在标记-清除算法中进行了一次清理碎片化的过程，相当于标记-清除-整理算法。</p>
+<p><strong>优点：</strong>解决了标记-清除算法中的内存区域分散问题，消除了复制算法中内存减半的高额代价。<br><strong>缺点：</strong>从效率上看，标记-压缩算法的效率低于复制算法，移动对象时，如果对象被引用，还需要改变引用的地址。移动过程中，需要全程暂停用户的应用程序，即STW。</p>
+<h2 id="三种清除算法的对比"><a href="#三种清除算法的对比" class="headerlink" title="三种清除算法的对比"></a>三种清除算法的对比</h2><p><img src="https://img-blog.csdnimg.cn/20200725213300169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br>效率上来说，复制算法是当之无愧的老大，但是却浪费了太多内存。</p>
+<p>而为了尽量兼顾上面提到的三个指标，标记-整理算法相对来说更平滑一些，但是效率上不尽如人意，它比复制算法多了一个标记的阶段，比标记-清除多了一个整理内存的阶段。</p>
+<h2 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h2><p>目前几乎所有的GC都运用了分代收集算法。<br>在HotSpot中，基于分代的概念，GC所使用的内存回收算法必须解和年轻代和老年代的各自特点。（使用复制算法）<br>年轻代：区域相对老年代的较小，对象生命周期短，存活率低，回收频繁。<br>老年代：区域代，对象生命周期长，存活率高，回收不频繁<br>（一般有标记-清除算法和标记-整理算法混合使用）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zzz-blog.github.io/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/" data-id="ckd5l921e0002bcq7cpzg3641" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          垃圾回收相关概念
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JVM学习之方法区（元空间）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">JVM学习之垃圾回收器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">垃圾回收相关概念</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">JVM学习之字符串常量池和垃圾收集算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">JVM学习之方法区（元空间）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">JVM学习第二天堆（heap）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zzz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

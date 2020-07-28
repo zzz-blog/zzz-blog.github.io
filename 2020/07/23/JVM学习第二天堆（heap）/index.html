@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JVM学习第二天堆（heap） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天继续学习JVM的第二天，主要学习了JVM运行时数据区的堆，也是JVM很重要的内容，宋红康老师讲解的非常好，很清晰。明天继续学习JVM中的方法区（也不叫方法区了，被元空间取代了）。 剑指Offer 7 斐波那契数列大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;&#x3D;39 12345678910111213141516171">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM学习第二天堆（heap）">
+<meta property="og:url" content="https://zzz-blog.github.io/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天继续学习JVM的第二天，主要学习了JVM运行时数据区的堆，也是JVM很重要的内容，宋红康老师讲解的非常好，很清晰。明天继续学习JVM中的方法区（也不叫方法区了，被元空间取代了）。 剑指Offer 7 斐波那契数列大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;&#x3D;39 12345678910111213141516171">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020072320292577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200723204203894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200723213338374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200723213517466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-23T13:41:34.000Z">
+<meta property="article:modified_time" content="2020-07-24T01:06:19.452Z">
+<meta property="article:author" content="zzz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020072320292577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zzz-blog.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JVM学习第二天堆（heap）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/" class="article-date">
+  <time datetime="2020-07-23T13:41:34.000Z" itemprop="datePublished">2020-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM学习第二天堆（heap）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天继续学习JVM的第二天，主要学习了JVM运行时数据区的堆，也是JVM很重要的内容，宋红康老师讲解的非常好，很清晰。明天继续学习JVM中的方法区（也不叫方法区了，被元空间取代了）。</p>
+<h2 id="剑指Offer-7-斐波那契数列"><a href="#剑指Offer-7-斐波那契数列" class="headerlink" title="剑指Offer 7 斐波那契数列"></a>剑指Offer 7 斐波那契数列</h2><p><strong>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;=39</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;=39</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Soluion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> test = test2(<span class="number">7</span>);</span><br><span class="line">        System.out.println(test);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> test(n-<span class="number">1</span>)+test(n-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//常规定义数组实现</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">40</span>];</span><br><span class="line">        a[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        a[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> ; i&lt;=n ;i++)&#123;</span><br><span class="line"></span><br><span class="line">            a[i] = a[i-<span class="number">1</span>]+a[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>简单地讲，一个Native Methodt是一个Java调用非Java代码的接囗。一个Native Method是这样一个Java方法：该方法的实现由非Java语言实现，比如C。这个特征并非Java所特有，很多其它的编程语言都有这一机制，比如在C++中，你可以用extern “c” 告知c++编译器去调用一个c的函数。</p>
+<p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序。<br><strong>为什么吆条用本地方法</strong><br>因为java语言时从c/c++演变过来的，一些方法是由c/c++实现的，可以使我们不用去关心，这些方法的具体实现而区更好的使用这些方法。</p>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>Java虚拟机栈于管理Java方法的调用，而本地方法栈用于管理<strong>本地方法的调用。</strong><br>并不是所有的JVM都支持本地方法。因为Java虚拟机规范并没有明确要求本地方法栈的使用语言、具体实现方式、数据结构等。如果JVM产品不打算支持native方法，也可以无需实现本地方法栈。</p>
+<p>在Hotspot JVM中，直接将本地方法栈和虚拟机栈合二为一。</p>
+<p>JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。</p>
+<p>JDK1.8开始，取消了Java方法区，取而代之的是位于直接内存的元空间（metaSpace）。</p>
+<h2 id="堆空间"><a href="#堆空间" class="headerlink" title="堆空间"></a>堆空间</h2><p>1.一个JVM实例只存在一个堆内存，堆也是java内存管理的核心区域。<br>2.java堆区在java启动的时候即被创建，其空间大小就确定了。是JVM管理的最大一块内存空间。<br>3.所有的线程共享java堆，在这里还可以划分私有的缓存区（TLAB）<br>4.在方法结束后，堆中的对象不会马上被移除，仅仅在垃圾收集的时候才会被移除。<br>5.堆，是GC（Garbage Colletion，垃圾收集器）执行垃圾回收的重点区域。</p>
+<h2 id="堆内存的划分"><a href="#堆内存的划分" class="headerlink" title="堆内存的划分"></a>堆内存的划分</h2><p><img src="https://img-blog.csdnimg.cn/2020072320292577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>新生代（Eden和Survivor区）+养老带</p>
+<p><strong>默认对空间的大小</strong><br>初始内存大小：物理内存电脑大小/64<br>Runtime.getRuntime().totalMemory/1024/1024;<br>最大内存大小：物理内存电脑大小/64<br>Runtime.getRuntime().maxMemory/1024/1024;</p>
+<ul>
+<li>-Xms10m 初始化10m堆内存</li>
+<li>-Xmx10m 最大分配10m堆内存    </li>
+</ul>
+<h2 id="年轻代和老年代"><a href="#年轻代和老年代" class="headerlink" title="年轻代和老年代"></a>年轻代和老年代</h2><p><strong>存储在JVM中的java对象又可以划分两类</strong><br>一类是生命周期较短的瞬时对象，这类对象的创建和销毁都非常迅速。<br>另一类对象的生命周期却非常长，在某些情况下还能与JVM的生命周期一样。</p>
+<p>年轻代又可以分为Eden空间（伊甸园空间）、Survivor0空间和Survivor1空间（有时也叫from区和to区）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200723204203894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200723213338374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>默认-XX:NewRatio=2，表示新生代占1，老年代占2，新生代占整个堆的1/3</p>
+<p>可以修改-XX:NewRatio=4，表示新生代占1，老年代占4，新生代占整个堆的1/5</p>
+<p><strong>几乎所有的java对象都是在Eden区被new出来的，绝大部分的销毁都在新生代中进行</strong></p>
+<h2 id="对象的分配过程"><a href="#对象的分配过程" class="headerlink" title="对象的分配过程"></a>对象的分配过程</h2><p>首先对象是在新生代中的Eden空间被new出来的，当Eden空间的内存满了，就会启动垃圾回收机制（YGC），判断哪些是垃圾应该回收，如果没有回收掉的将会幸存下来放到Survivor0空间，并标记堆对象的年龄为1，如果Eden区的内存再次满了，就会再次启动垃圾回收机制，并且也会回收Survivor0区的垃圾，并把两个区间中幸存对象放到Survivor1空间中，并把新幸存的对象年龄标记为0，原来幸存的对象年龄加1，然后再次启动垃圾回收垃圾。重复操作，知道对象的年龄为15，如果再次加1就会晋升到老年代中。如果老年代的空间满了，就会启动Major GC，回收老年代中的垃圾。如果老年代的内存不够，就会抱OOM异常。<br><strong>80%的对象都会在Eden空间被回收</strong><br><strong>如果遇到一个超大对象，Eden空间放不下，会直接放入老年代中，如果老年代也不够，就直接抱OOM异常</strong><br><strong>经过YGC后，幸存者空间内存不够，则会之间放入老年代</strong></p>
+<p><strong>注意</strong>：在Eden区满了的时候，才会触发MinorGC，而幸存者区满了后，不会触发Minor GC操作</p>
+<p>如果Survivor区满了后，将会触发一些特殊的规则，也就是可能直接晋升老年代</p>
+<p><strong>常用的JVM调优工具：</strong>：VisualVm  、Jprofiler、GCViewer、GCEasy</p>
+<h2 id="Minor-GC、Major-GC和Full-GC"><a href="#Minor-GC、Major-GC和Full-GC" class="headerlink" title="Minor GC、Major GC和Full GC"></a>Minor GC、Major GC和Full GC</h2><p>JVM在进行GC时，并非每次都对上面的三个内存（新生区，老年代，方法区）区域一起回收，大部分回收都是指新生代<br>针对Hot Spot Vm的实现，它里面的GC按照回收区域又分为两大类型：一种时部分收集（Partial GC），一种时整堆收集（Full GC）<br>一、部分收集：不是完整收集java堆的垃圾，其中又分为：<br>        1.新生代收集（Minor GC/Young GC）：只是新生代的垃圾收集<br>        2.老年代收集（Major GC/Old GC）：只是老年代的垃圾收集。<br>        3.混合收集（Mixed GC）：收集整个新生代以及部分老年代的垃圾收集，目前，只有G1 GC会有这种行为。<br>二、整堆收集（Full GC）：收集整个java堆和方法区的垃圾收集</p>
+<p>年轻代GC（Minor GC）非常频繁，回收速度也快，但是会引发STW暂停，其他用户线程，等垃圾回收结束，用户线程才恢复，但是速度快影响不大。</p>
+<p>老年代GC（Major GC）的出现，往往会伴随至少一次的Minor GC，如果老年代空间不足，先尝试触发Minor GC，如果之后空间还不足，则触发Major GC，Major GC的速度一班会比Yonug GC慢10倍以上，STW时间会更长。</p>
+<p>Full GC触发的条件<br>1.调用System。gc（）时，系统会建议执行Full GC，但是不必执行。<br>2.老年代内存不足<br>3.方法去/元空间不足</p>
+<h2 id="为什么需要把java堆分代？不分代就不能正常工作吗？"><a href="#为什么需要把java堆分代？不分代就不能正常工作吗？" class="headerlink" title="为什么需要把java堆分代？不分代就不能正常工作吗？"></a>为什么需要把java堆分代？不分代就不能正常工作吗？</h2><p>其实不分代完全可以，分代的唯一理由就是优化GC性能。如果没有分代，那所有的对象都在一块，就如同把一个学校的人都关在一个教室。GC的时候要找到哪些对象没用，这样就会对堆的所有区域进行扫描。而很多对象都是朝生夕死的，如果分代的话，把新创建的对象放到某一地方，当GC的时候先把这块存储“朝生夕死”对象的区域进行回收，这样就会腾出很大的空间出来</p>
+<h2 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h2><p>优先分配到Eden<br>大对象直接分配到老年代，尽量避免程序中出现过多的大对象<br>长期存活的对象分配到老年代中</p>
+<h2 id="TLAB-默认开启"><a href="#TLAB-默认开启" class="headerlink" title="TLAB(默认开启)"></a>TLAB(默认开启)</h2><p><strong>为什么要有TLAB</strong><br>因为创建的对象堆在堆中分配内存，而任何线程都可以访问堆中的数据，由于堆中的对象的创建十分频繁，在并发的环境下时线程不安全的。所以就需要TLAB。<br><img src="https://img-blog.csdnimg.cn/20200723213517466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><strong>什么是TLAB</strong><br>JVM为每个线程分配了一个私有的缓存区域，在Eden空间中，避免了一系列的线程安全问题，同时还提升了分配的屯渡良，因此我们还可以将这种内存分配方式称为快速分配策略。<br><strong>如果JVM创建TLAB失败就会为尝试加锁，保证其原子性</strong></p>
+<h2 id="堆空间的参数设置"><a href="#堆空间的参数设置" class="headerlink" title="堆空间的参数设置"></a>堆空间的参数设置</h2><p>-XX：+PrintFlagsInitial：查看所有的参数的默认初始值</p>
+<p>-XX：+PrintFlagsFinal：查看所有的参数的最终值（可能会存在修改，不再是初始值）</p>
+<p>-Xms：初始堆空间内存（默认为物理内存的1/64）</p>
+<p>-Xmx：最大堆空间内存（默认为物理内存的1/4）</p>
+<p>-Xmn：设置新生代的大小。（初始值及最大值）</p>
+<p>-XX:NewRatio：配置新生代与老年代在堆结构的占比</p>
+<p>-XX:SurvivorRatio：设置新生代中Eden和S0/S1空间的比例</p>
+<p>-XX:MaxTenuringThreshold：设置新生代垃圾的最大年龄</p>
+<h2 id="堆是为分配对象存储的唯一选择吗（不是）"><a href="#堆是为分配对象存储的唯一选择吗（不是）" class="headerlink" title="堆是为分配对象存储的唯一选择吗（不是）"></a>堆是为分配对象存储的唯一选择吗（不是）</h2><p>如果经过逃逸分析后发现，一个对象在方法内部使用，则认为没有发生逃逸，那么就可能分配到栈上，当一个对象在方法中被定义后，对象只在方法内部使用，则认为没有发生逃逸，则使用栈上分配，如果被外部方法引用，则认为发生逃逸。逃逸分析也是堆JVM的一种优化，减少了GC的启动。JDK7之后就开始了逃逸分析。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zzz-blog.github.io/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/" data-id="ckd5l921e0003bcq7hnpu1m5u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JVM学习之方法区（元空间）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">JVM学习之垃圾回收器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">垃圾回收相关概念</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">JVM学习之字符串常量池和垃圾收集算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">JVM学习之方法区（元空间）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">JVM学习第二天堆（heap）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zzz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

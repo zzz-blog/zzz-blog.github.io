@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考了尚硅谷宋红康老师的JVM视频，将的很棒，也很详细。今天学习了类加载的过程，一些类加载器，双亲委派机制，运行时数据区中的程序计数器（PC寄存器）和虚拟机栈。今天学到了很多，明天继续加油吧！！！ 剑指offer 6：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈">
+<meta property="og:url" content="https://zzz-blog.github.io/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考了尚硅谷宋红康老师的JVM视频，将的很棒，也很详细。今天学习了类加载的过程，一些类加载器，双亲委派机制，运行时数据区中的程序计数器（PC寄存器）和虚拟机栈。今天学到了很多，明天继续加油吧！！！ 剑指offer 6：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722143551297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722145148794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722212658948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722212739167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722212929489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722213021726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722215506852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722220204854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-22T14:08:36.000Z">
+<meta property="article:modified_time" content="2020-07-23T13:42:07.368Z">
+<meta property="article:author" content="zzz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200722143551297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zzz-blog.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/" class="article-date">
+  <time datetime="2020-07-22T14:08:36.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考了尚硅谷宋红康老师的JVM视频，将的很棒，也很详细。今天学习了类加载的过程，一些类加载器，双亲委派机制，运行时数据区中的程序计数器（PC寄存器）和虚拟机栈。今天学到了很多，明天继续加油吧！！！</p>
+<h2 id="剑指offer-6："><a href="#剑指offer-6：" class="headerlink" title="剑指offer 6："></a>剑指offer 6：</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。<br>输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。<br>例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。<br>NOTE：给出的所有元素都大于0，若数组大小为0，请返回0</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer6</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a =&#123;<span class="number">6501</span>,<span class="number">6828</span>,<span class="number">6963</span>,<span class="number">7036</span>,<span class="number">7422</span>,<span class="number">7674</span>,<span class="number">8146</span>,<span class="number">8468</span>,<span class="number">8704</span>,<span class="number">8717</span>,<span class="number">9170</span>,<span class="number">9359</span>,<span class="number">9719</span>,<span class="number">9895</span>,<span class="number">9896</span>,<span class="number">9913</span>,<span class="number">9962</span>,<span class="number">154</span>,<span class="number">293</span>,<span class="number">334</span>,<span class="number">492</span>,<span class="number">1323</span>,<span class="number">1479</span>,<span class="number">1539</span>,<span class="number">1727</span>,<span class="number">1870</span>,<span class="number">1943</span>,<span class="number">2383</span>,<span class="number">2392</span>,<span class="number">2996</span>,<span class="number">3282</span>,<span class="number">3812</span>,<span class="number">3903</span>,<span class="number">4465</span>,<span class="number">4605</span>,<span class="number">4665</span>,<span class="number">4772</span>,<span class="number">4828</span>,<span class="number">5142</span>,<span class="number">5437</span>,<span class="number">5448</span>,<span class="number">5668</span>,<span class="number">5706</span>,<span class="number">5725</span>,<span class="number">6300</span>,<span class="number">6335</span>&#125;;</span><br><span class="line">        Offer6 offer6 = <span class="keyword">new</span> Offer6();</span><br><span class="line">        <span class="keyword">int</span> solution = offer6.solution(a);</span><br><span class="line">        System.out.println(solution);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (a.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (a.length==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt;a.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i]&gt;a[i+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> a[i+<span class="number">1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (i==a.length-<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> a[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p><img src="https://img-blog.csdnimg.cn/20200722143551297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br><strong>加载（Loading）</strong>：简单来说就是指把class字节码文件从各个来源，通过类加载装载到内存中，生成该类的class类型，作为方法区这个类的数据访问入口。<br><strong>验证（Verrfy）</strong>：目的在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载的正确性，不会危害虚拟机的自身安全。<br><strong>准备（Prepare）</strong>：为类分配内存并设置改类的初始值<br><strong>解析（Resolve）</strong>：将常量池中的符号引用转化为直接引用的过程（虚拟机会把类类名，方法名，字段名这些符号引用替换为具体的内存地址或偏移量，也就是直接引用。）<br><strong>初始化（Initialization）</strong>:对静态变量和静态代码块执行初始化工作。</p>
+<h2 id="加载器的分类"><a href="#加载器的分类" class="headerlink" title="加载器的分类"></a>加载器的分类</h2><p><img src="https://img-blog.csdnimg.cn/20200722145148794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><strong>启动类加载器（引导类加载器 Bootstrap ClassLoader）</strong>：主要加载的时Java中的核心类库，这个加载器时用C/C++写的，在Java中不能获取。<br><strong>扩展类加载器（Extension ClassLoader）</strong>：主要加载一些扩展的类库，派生于ClassLoader类，java语言写的<br><strong>应用程序加载器（AppClassLoader）</strong>：虚拟机自带的，java语言编写，派生与ClassLoader，主要加载我们自己写的类。</p>
+<h2 id="获取ClassLoader的途径"><a href="#获取ClassLoader的途径" class="headerlink" title="获取ClassLoader的途径"></a>获取ClassLoader的途径</h2><p>1.clazz.getClassLoader()     获取实例类的加载器2.Thread.currentThread.getContextClassLoader()  当前线程上下文的ClassLoader<br>3.ClassLoader.getSystemClassLoader  获取系统的classLoader。<br>4.ClassLoader.getparet（）  获取加载器的父类。</p>
+<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><p><img src="https://img-blog.csdnimg.cn/20200722212658948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>java虚拟机对class文件采用的时按需加载的方式，也就是当需要使用该类时才会将它的class文件加载到内存中。而加载某个类的class文件时，java虚拟机采用双亲委派机制。<br><strong>工作原理</strong>：如果一个类收到了加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行，如果父类还有父类，则进一步委托，知道达到底层，如果父类加载器可以文成加载，则返回，倘若父类加载器无法完成，子类才回去加载。<br><strong>优势</strong>：避免类的重复加载、防止核心API被修改。</p>
+<p><strong>在java中如何判断两个class对象是否相同</strong><br>1.类的完整类名必须一致，包括包名。<br>2.加载这个类的ClassLoader也必须相同</p>
+<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p><img src="https://img-blog.csdnimg.cn/20200722212739167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br>heap、Method Area为线程共享的，只有一份。<br>PC、VMS、NMS每个线程独有，随着线程的开始和结束而创建和销毁。<br><img src="https://img-blog.csdnimg.cn/20200722212929489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><p><strong>作用</strong>：PC寄存器用来存储执行下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。<br><img src="https://img-blog.csdnimg.cn/20200722213021726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt="">1.它是一块很小的内存空间，几乎可以忽略不计，也是运行速度最快的存储区域，<br>2.在JVM规范中，每一个线程都有程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。<br>3.程序计数器会存储当前小恒成正在执行的java方法的JVM指令地址，如果执行native方法，则是未指定值（undifind）。<br>4.它是唯一一个在java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p>
+<p><strong>使用PC寄存器存储字节码指令有什么用</strong><br>因为CPU需要不停的切换各个线程，这个时候切换回来以后，就的知道接着从那哪里继续执行。<br><strong>PC寄存器卫生么会被设定为线程私有的</strong><br>多线程在一个特定的时间段内执行执行其中的一个线程方法，CPU会不停地做任务切换，为了准确地记录各个线程正在执行的当前字节码指令地址，最好的办法自然是为每一个线程分配以个PC寄存器。</p>
+<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><p>栈是运行时单位，而堆时存储的单位。<br>java虚拟机，早期也叫java栈，每个线程在创建一个虚拟机栈，其内部保存一个个栈帧，对应这一次次的java方法调用，生命周期和线程一致。<br><strong>特点</strong><br>1.栈是一种快速有效的分配存储方式，访问速度仅次于程序计数器。<br>2.JVM直接堆java栈的操作只有两个出栈和入栈<br>3.对于栈来说不存在垃圾回收问题，但存在OOM问题。</p>
+<h2 id="栈中出现的异常"><a href="#栈中出现的异常" class="headerlink" title="栈中出现的异常"></a>栈中出现的异常</h2><p>栈中可能出现的异常</p>
+<p>Java 虚拟机规范允许Java栈的大小是动态的或者是固定不变的。</p>
+<p><strong>StackOverFlowError</strong>如果采用固定大小的Java虚拟机栈，那每一个线程的Java虚拟机栈容量可以在线程创建的时候独立选定。如果线程请求分配的栈容量超过Java虚拟机栈允许的最大容量，Java虚拟机将会抛出一个StackoverflowError 异常。<br>可以使用-Xss内存大小  来设置栈的大小</p>
+<p><strong>OutOfmemoryError</strong>如果Java虚拟机栈可以动态扩展，并且在 尝试扩展的时候无法申请到足够的内存，或者在创建新的线程时没有足够的内存去创建对应的虚拟机栈，那Java虚拟机将会抛出一个 outofMemoryError 异常。<br><strong>栈中方法的结束方式</strong><br>1.正常结束<br>2.方法执行时，未抛出异常</p>
+<h2 id="栈帧的内部结构"><a href="#栈帧的内部结构" class="headerlink" title="栈帧的内部结构"></a>栈帧的内部结构</h2><p>1.局部变量表<br>2.操作数栈<br>3.动态链接<br>4.方法返回地址<br>5.一些附加信息</p>
+<h2 id="局部变量表（局部变量数组，本地变量表）"><a href="#局部变量表（局部变量数组，本地变量表）" class="headerlink" title="局部变量表（局部变量数组，本地变量表）"></a>局部变量表（局部变量数组，本地变量表）</h2><p>定义一个数字数组，主要用于存储方法参数和定义方法体内的局部变量，<br>这些数据类型包括基本数据类型、对象引用（reference）、以及returnAddress类型<br>由于线程的数据类型时私有的，所以不存在数据安全问题，局部变量表的大小一旦确定下来，就不会改变。</p>
+<p><strong>关于slot</strong><br>局部变量表最基本的存储单位就是slot（槽），局部变量表中存放编译期可知的各种基本数据类型（8种），引用类型（reference），returnAddress类型的变量。<br>在局部变量表里，32位以内的类型只占用一个slot（包括returnAddress类型），64位的类型（1ong和double）占用两个slot。</p>
+<p>byte、short、char 在存储前被转换为int，boolean也被转换为int，0表示false，非0表示true。<br>1ong和double则占据两个slot。<br><img src="https://img-blog.csdnimg.cn/20200722215506852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br><strong>注意</strong>如果当前帧市幼构造方法或者实例方法创建时，那么该对象引用this放在index为0处，其余的参数按照参数顺序排序。</p>
+<h2 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h2><p>操作数栈：Operand Stack</p>
+<p>每一个独立的栈帧除了包含局部变量表以外，还包含一个后进先出（Last - In - First -Out）的 操作数栈，也可以称之为 表达式栈（Expression Stack）</p>
+<p>操作数栈，在方法执行过程中，根据字节码指令，往栈中写入数据或提取数据，即入栈（push）和 出栈（pop）</p>
+<p>某些字节码指令将值压入操作数栈，其余的字节码指令将操作数取出栈。使用它们后再把结果压入栈<br>比如：执行复制、交换、求和等操作<br><strong>操作数栈并非采用访问索引的方式来进行数据访问的，而是只能通过标准的入栈和出栈操作来完成一次数据访问</strong></p>
+<h2 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h2><p><img src="https://img-blog.csdnimg.cn/20200722220204854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>每一个栈帧内部都包含一个指向运行时常量池中该栈帧所属方法的引用包含这个引用的目的就是为了支持当前方法的代码能够实现动态链接（Dynamic Linking）。</p>
+<h3 id="早期绑定"><a href="#早期绑定" class="headerlink" title="早期绑定"></a>早期绑定</h3><p>早期绑定就是指被调用的目标方法如果在编译期可知，且运行期保持不变时，即可将这个方法与所属的类型进行绑定，这样一来，由于明确了被调用的目标方法究竟是哪一个，因此也就可以使用静态链接的方式将符号引用转换为直接引用。</p>
+<h3 id="晚期绑定"><a href="#晚期绑定" class="headerlink" title="晚期绑定"></a>晚期绑定</h3><p>如果被调用的方法在编译期无法被确定下来，只能够在程序运行期根据实际的类型绑定相关的方法，这种绑定方式也就被称之为晚期绑定。</p>
+<h2 id="方法返回地址"><a href="#方法返回地址" class="headerlink" title="方法返回地址"></a>方法返回地址</h2><p>存放调用该方法的pc寄存器的值。一个方法的结束，有两种方式：</p>
+<p>正常执行完成</p>
+<p>出现未处理的异常，非正常退出</p>
+<p>无论通过哪种方式退出，在方法退出后都返回到该方法被调用的位置。方法正常退出时，调用者的pc计数器的值作为返回地址，即调用该方法的指令的下一条指令的地址。而通过异常退出的，返回地址是要通过异常表来确定，栈帧中一般不会保存这部分信息。</p>
+<p>当一个方法开始执行后，只有两种方式可以退出这个方法：</p>
+<p>执行引擎遇到任意一个方法返回的字节码指令（return），会有返回值传递给上层的方法调用者，简称正常完成出口；</p>
+<p>一个方法在正常调用完成之后，究竟需要使用哪一个返回指令，还需要根据方法返回值的实际数据类型而定。<br>在字节码指令中，返回指令包含ireturn（当返回值是boolean，byte，char，short和int类型时使用），lreturn（Long类型），freturn（Float类型），dreturn（Double类型），areturn。另外还有一个return指令声明为void的方法，实例初始化方法，类和接口的初始化方法使用。<br>在方法执行过程中遇到异常（Exception），并且这个异常没有在方法内进行处理，也就是只要在本方法的异常表中没有搜索到匹配的异常处理器，就会导致方法退出，简称异常完成出口。</p>
+<p>方法执行过程中，抛出异常时的异常处理，存储在一个异常处理表，方便在发生异常的时候找到处理异常的代码</p>
+<p><strong>本质上，方法的退出就是当前栈帧出栈的过程。此时，需要恢复上层方法的局部变量表、操作数栈、将返回值压入调用者栈帧的操作数栈、设置PC寄存器值等，让调用者方法继续执行下去。</strong></p>
+<p>正常完成出口和异常完成出口的区别在于：通过异常完成出口退出的不会给他的上层调用者产生任何的返回值。</p>
+<h2 id="一些附加信息"><a href="#一些附加信息" class="headerlink" title="一些附加信息"></a>一些附加信息</h2><p>栈帧中还允许携带与Java虚拟机实现相关的一些附加信息。例如：对程序调试提供支持的信息。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zzz-blog.github.io/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/" data-id="ckd5l921i0008bcq7hvcu89p3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JVM学习第二天堆（heap）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/21/mysql-%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8Bjvm%E7%9A%84%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mysql 知识梳理和开始jvm的学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">JVM学习之垃圾回收器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">垃圾回收相关概念</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">JVM学习之字符串常量池和垃圾收集算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">JVM学习之方法区（元空间）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">JVM学习第二天堆（heap）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zzz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
