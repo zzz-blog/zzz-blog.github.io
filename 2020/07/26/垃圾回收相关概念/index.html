@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -459,7 +459,24 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="剑指Offer-11"><a href="#剑指Offer-11" class="headerlink" title="剑指Offer 11"></a>剑指Offer 11</h2><p>输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer11</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Offer11().solution(<span class="number">7</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum =<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span>[] chars = Integer.toBinaryString(n).toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt;chars.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (chars[i]==<span class="string">'1'</span>)&#123;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Offer11</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Offer11</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solution</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chars <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span>chars<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                sum<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="垃圾回收的相关概念"><a href="#垃圾回收的相关概念" class="headerlink" title="垃圾回收的相关概念"></a>垃圾回收的相关概念</h2><p>在默认的情况下System.gc()或Runtime.getRuntime().gc()的调用，会显式触发Full GC，同时对老年代和年轻代进行回收，尝试释放被丢弃对象的引用，<br>System.gc()无法保证垃圾收集器的调用。<br><strong>System.()底层调用的时Runtime.getRuntimr().gc()</strong></p>
 <h2 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h2><p>内有空闲的内存，斌且垃圾手机器也无法提供更多的内存。<br>原因：1.java虚拟机的堆内存设置不够，2.代码中创建了大量大对象，并且长时间不能被垃圾回收器收集。</p>
 <h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>只有对象不会在被引用到了，但是GC有不能回收他们的情况。<br><strong>举例</strong></p>
@@ -715,7 +732,7 @@
                     <div class="summary block-with-text">
                         
                             剑指 Offer12输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。（保证数组的稳定性）
-123456789101112
+//输入一个整数数组，实现一个
                         
                     </div>
                     <div class="publish-info">
@@ -754,7 +771,8 @@
                         
                             今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。
 剑指Offer 9用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？
-12345678910111213141516171819202122232425262728/
+//用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？
+public class Of
                         
                     </div>
                     <div class="publish-info">

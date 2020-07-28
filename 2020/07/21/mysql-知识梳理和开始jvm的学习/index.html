@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -459,7 +459,25 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="每天一道-剑指offer"><a href="#每天一道-剑指offer" class="headerlink" title="每天一道 剑指offer"></a>每天一道 剑指offer</h2><p>5.用两个栈实现一个队列<br>栈：先进后出<br>队列：先进先出<br>队列push操作：将元素放入stack1中。<br>队列pop操作：如果stack2中没有元素，将stack1中的元素放入stack2中，再stack2.pop（）；如果stack2中有元素，直接stack2.pop（）；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用两个栈实现队列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">//存</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span></span>&#123;</span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!stack2.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">while</span> (!stack1.isEmpty())&#123;</span><br><span class="line">                 stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//用两个栈实现队列</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Offer5</span> <span class="token punctuation">{</span>
+
+    Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stack1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stack2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//存</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> node<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        stack1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//取</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>stack2<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>stack1<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                 stack2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>stack1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="事务的特性-ACID"><a href="#事务的特性-ACID" class="headerlink" title="事务的特性(ACID)"></a>事务的特性(ACID)</h2><p>原子性（atomicity）:事务时最小的工作单元，不可再分割。<br>一致性（consistency）：多条sql语句，要么同时成功，要么同时失败。<br>隔离性（isolution）:事务A与事务B之间有隔离。<br>持久性（durability）:最终的数据必须持久化到硬盘上，事务才算结束。</p>
 <h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><p>第一级别：读未提交（read unconmitted）:事务A和事务B，事务B修改了数据，没有提交，而事务A可以立马读取到。产生脏读现象。</p>
 <p>第二级别：读已提交（read committed）：事务A和事务B，事务B修改了数据，并提交，事务A才能读到，解决了脏读现象，但是产生了不可重复读。</p>
@@ -766,7 +784,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354/** * 输入某二叉树的前序遍历和中序遍
+                            
+/**
+ * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ * 例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，
                         
                     </div>
                     <div class="publish-info">
