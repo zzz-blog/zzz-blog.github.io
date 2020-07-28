@@ -1,793 +1,1216 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zzz-blog.github.io/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="zzz">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Hexo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.1"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
       
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
         
-      </nav>
-      <nav id="sub-nav">
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zzz-blog.github.io"></form>
-      </div>
-    </div>
-  </div>
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-JVM学习之垃圾回收器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/" class="article-date">
-  <time datetime="2020-07-27T14:01:41.000Z" itemprop="datePublished">2020-07-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">JVM学习之垃圾回收器</a>
-    </h1>
-  
 
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="剑指-Offer12"><a href="#剑指-Offer12" class="headerlink" title="剑指 Offer12"></a>剑指 Offer12</h2><p><strong>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。（保证数组的稳定性）</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，</span></span><br><span class="line"><span class="comment">// 所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer12</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a =&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line">        Offer12 offer12 = <span class="keyword">new</span> Offer12();</span><br><span class="line">        offer12.solution1(a);</span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br><span class="line">        <span class="keyword">int</span>[] ints = offer12.solution2(a);</span><br><span class="line">        System.out.println(Arrays.toString(ints));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solution1</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a.length-<span class="number">1</span>; i &gt;<span class="number">1</span> ; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span> ;j&lt;i ; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (a[j]%<span class="number">2</span>==<span class="number">0</span>&amp;&amp;a[j+<span class="number">1</span>]%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> temp =a[j];</span><br><span class="line">                    a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">                    a[j+<span class="number">1</span>]=temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] solution2(<span class="keyword">int</span>[] a)&#123;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] b =<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;a.length ; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i]%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;a.length ; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i]%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                b[j++]=a[i];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                b[count++]=a[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="垃圾回收器概述"><a href="#垃圾回收器概述" class="headerlink" title="垃圾回收器概述"></a>垃圾回收器概述</h2><h2 id="GC分类与性能指标"><a href="#GC分类与性能指标" class="headerlink" title="GC分类与性能指标"></a>GC分类与性能指标</h2><p><strong>吞吐量</strong>：运行用户代码的事件占总运行时长时间的比例<br><strong>暂停时间</strong>：执行垃圾收集器时，程序的工作线程被暂停的时间<br><strong>内存占用</strong>：java堆区所占的大小<br><strong>一般一款优秀的垃圾回收器满足其中的两项</strong></p>
-<h2 id="垃圾回收器的分类"><a href="#垃圾回收器的分类" class="headerlink" title="垃圾回收器的分类"></a>垃圾回收器的分类</h2><p><strong>串行回收器</strong>：Serial 、Serial Old<br><strong>并行回收器</strong>：ParNew、Parallel Scavenge、Parallel Old<br><strong>并发回收器</strong>：CMS、G1<br><img src="https://img-blog.csdnimg.cn/20200727215044514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="7款经典收集器与垃圾分代之间的关系"><a href="#7款经典收集器与垃圾分代之间的关系" class="headerlink" title="7款经典收集器与垃圾分代之间的关系"></a>7款经典收集器与垃圾分代之间的关系</h2><p><img src="https://img-blog.csdnimg.cn/2020072721513041.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://img-blog.csdnimg.cn/20200727215107948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br>新生代收集器：Serial、ParNew、Paralle1 Scavenge；</p>
-<p>老年代收集器：Serial old、Parallel old、CMS；</p>
-<p>整堆收集器：G1；</p>
-<h2 id="Serial回收器：串行回收"><a href="#Serial回收器：串行回收" class="headerlink" title="Serial回收器：串行回收"></a>Serial回收器：串行回收</h2><p>Serial收集器采用复制算法、串行回收和”stop-the-World”机制的方式执行内存回收。</p>
-<p>除了年轻代之外，Serial收集器还提供用于执行老年代垃圾收集的Serial old收集器。Serial old收集器同样也采用了串行回收和”stop the World”机制，只不过内存回收算法使用的是标记-压缩算法。<br><img src="https://img-blog.csdnimg.cn/20200727215229821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="ParNew回收器：并行回收"><a href="#ParNew回收器：并行回收" class="headerlink" title="ParNew回收器：并行回收"></a>ParNew回收器：并行回收</h2><ul>
-<li><p>Par是Parallel的缩写，New：只能处理的是新生代</p>
-</li>
-<li><p>ParNew 收集器除了采用并行回收的方式执行内存回收外，两款垃圾收集器之间几乎没有任何区别。ParNew收集器在年轻代中同样也是采用复制算法、”stop-the-World”机制。</p>
-</li>
-</ul>
-<h2 id="Parallel回收器：吞吐量优先"><a href="#Parallel回收器：吞吐量优先" class="headerlink" title="Parallel回收器：吞吐量优先"></a>Parallel回收器：吞吐量优先</h2><p><strong>JDK8中默认采用Parallel收集器和Parallel Old收集器组合使用</strong><br>Parallel old收集器采用了标记-压缩算法，但同样也是基于并行回收和”stop-the-World”机制。<br><img src="https://img-blog.csdnimg.cn/20200727215549269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="G1回收器：区域化分代式"><a href="#G1回收器：区域化分代式" class="headerlink" title="G1回收器：区域化分代式"></a>G1回收器：区域化分代式</h2><p><strong>JDk8之后使用的</strong><br><strong>G1垃圾回收器的回收过程</strong></p>
-<ul>
-<li>年轻代GC（Young GC）</li>
-<li>老年代并发标记过程（Concurrent Marking）</li>
-<li>混合回收（Mixed GC）</li>
-</ul>
-<p><strong>优点</strong><br><strong>并行与并发</strong></p>
-<ul>
-<li>并行性：G1在回收期间，可以有多个GC线程同时工作，有效利用多核计算能力。此时用户线程STW</li>
-<li>并发性：G1拥有与应用程序交替执行的能力，部分工作可以和应用程序同时执行，因此，一般来说，不会在整个回收阶段发生完全阻塞应用程序的情况</li>
-</ul>
-<p><strong>分代收集</strong></p>
-<ul>
-<li>从分代上看，G1依然属于分代型垃圾回收器，它会区分年轻代和老年代，年轻代依然有Eden区和Survivor区。但从堆的结构上看，它不要求整个Eden区、年轻代或者老年代都是连续的，也不再坚持固定大小和固定数量。</li>
-<li>将堆空间分为若干个区域（Region），这些区域中包含了逻辑上的年轻代和老年代。</li>
-<li>和之前的各类回收器不同，它同时兼顾年轻代和老年代。对比其他回收器，或者工作在年轻代，或者工作在老年代；<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
-</ul>
+<style>
+    .carousel-control {
+        width: 45px;
+        height: 45px;
+        line-height: 55px;
+        border-radius: 45px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 100;
+    }
 
-      
+    #prev-cover {
+        position: absolute;
+        top: 48%;
+        left: 8px;
+    }
+
+    #next-cover {
+        position: absolute;
+        top: 48%;
+        right: 8px;;
+    }
+
+    #prev-cover i {
+        margin-right: 3px;
+    }
+
+    #next-cover i {
+        margin-left: 3px;
+    }
+
+    .carousel-control:hover {
+        background-color: rgba(0, 0, 0, .4);
+    }
+
+    .carousel-control i {
+        color: #fff;
+        font-size: 2.4rem;
+    }
+</style>
+
+
+
+<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+    
+
+    <div class="carousel-item red white-text bg-cover about-cover">
+        <div class="container">
+            <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    subtitle
+                
+            </div>
+
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['从来没有真正的绝境, 只有心灵的迷途','Never really desperate, only the lost of the soul'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/" data-id="ckd5l92180000bcq740vve888" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-垃圾回收相关概念" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" class="article-date">
-  <time datetime="2020-07-26T13:16:31.000Z" itemprop="datePublished">2020-07-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">垃圾回收相关概念</a>
-    </h1>
-  
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+</script>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="剑指Offer-11"><a href="#剑指Offer-11" class="headerlink" title="剑指Offer 11"></a>剑指Offer 11</h2><p>输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer11</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Offer11().solution(<span class="number">7</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum =<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span>[] chars = Integer.toBinaryString(n).toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt;chars.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (chars[i]==<span class="string">'1'</span>)&#123;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="垃圾回收的相关概念"><a href="#垃圾回收的相关概念" class="headerlink" title="垃圾回收的相关概念"></a>垃圾回收的相关概念</h2><p>在默认的情况下System.gc()或Runtime.getRuntime().gc()的调用，会显式触发Full GC，同时对老年代和年轻代进行回收，尝试释放被丢弃对象的引用，<br>System.gc()无法保证垃圾收集器的调用。<br><strong>System.()底层调用的时Runtime.getRuntimr().gc()</strong></p>
-<h2 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h2><p>内有空闲的内存，斌且垃圾手机器也无法提供更多的内存。<br>原因：1.java虚拟机的堆内存设置不够，2.代码中创建了大量大对象，并且长时间不能被垃圾回收器收集。</p>
-<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>只有对象不会在被引用到了，但是GC有不能回收他们的情况。<br><strong>举例</strong></p>
-<ul>
-<li>单例模式:单例模式的生命周器和应用程序的生命周期一样。所以单例程序中，不能再去引用其他的对象，如果持有其他的对象，那么这个垃圾对象就不会被回收了，导致局部内存泄漏。</li>
-<li>一些提供close的资源关闭导致内存泄漏，像数据库链接，网络连接和io连接必须手动关闭，不忍无法被回收。<h2 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h2></li>
-</ul>
-<p><strong>并发：</strong>在一个时间段内，几个进程来回切换并执行<br><strong>并行：</strong>在一个时间点上，一个CPU执行一个线程，互不干扰<br>二者对比：<br>并发：指多个事情，在同一时间段内发生<br>并行：指多个事情，在同一时间点上发生</p>
-<h2 id="垃圾回收的并行与并发"><a href="#垃圾回收的并行与并发" class="headerlink" title="垃圾回收的并行与并发"></a>垃圾回收的并行与并发</h2><p><strong>并行：</strong>指多条垃圾回收线程并行工作，但此时用户线程仍处在等待状态。<br><strong>并发：</strong>用户线程与垃圾回收线程同时执行。但是仍然会有STW。</p>
-<h2 id="强引用、软引用、弱引用和虚引用"><a href="#强引用、软引用、弱引用和虚引用" class="headerlink" title="强引用、软引用、弱引用和虚引用"></a>强引用、软引用、弱引用和虚引用</h2><p><strong>强引用：</strong>最常见的引用，垃圾收集器永远不会收集改引用对象，但是这是造成内存泄漏的主要原因。<br><strong>软引用：</strong>内存不足就回收。<br><strong>软引用：</strong>发现就回收。<br><strong>虚引用：</strong>对象回收跟踪。</p>
 
-      
+
+            <div class="cover-btns">
+                <a href="#indexCard" class="waves-effect waves-light btn">
+                    <i class="fa fa-angle-double-down"></i>开始阅读
+                </a>
+
+                
+                    <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light btn" target="_blank">
+                        <i class="fab fa-github-alt"></i>Github
+                    </a>
+                
+            </div>
+            <div class="cover-social-link">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-id="ckd5l921h0007bcq7ewnndemp" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
+    
+</div>
 
-  
-    <article id="post-JVM学习之字符串常量池和垃圾收集算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/" class="article-date">
-  <time datetime="2020-07-25T13:41:09.000Z" itemprop="datePublished">2020-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+<script>
+    $(function () {
+        let coverSlider = $('.carousel');
+
+        //用户触摸轮播自动 restartPlay 是否生效
+        let initUserPressedOrDraggedActive = false
+
+        //用户触摸轮播自动 restartPlay
+        function initUserPressedOrDragged(instance) {
+            setInterval(() => {
+                if (instance.pressed || instance.dragged) {
+                    // console.log('initUserPressedOrDragged: ',instance.pressed,instance.dragged)
+                    restartPlay()
+                }
+            }, 1000)
+        }
+
+        coverSlider.carousel({
+            duration: Number('120'),
+            fullWidth: true,
+            indicators: 'true' === 'true',
+            onCycleTo() {
+                if (!initUserPressedOrDraggedActive) {
+                    // console.log('initUserPressedOrDraggedActive')
+                    initUserPressedOrDragged(this)
+                    initUserPressedOrDraggedActive = true
+                }
+            },
+        })
+
+        let carouselIntervalId;
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">JVM学习之字符串常量池和垃圾收集算法</a>
-    </h1>
-  
+        // Loop to call the next cover article picture.
+        let autoCarousel = function () {
+            carouselIntervalId = setInterval(function () {
+                coverSlider.carousel('next');
+            }, 5000);
+        };
+        autoCarousel();
+        
 
-      </header>
+        function restartPlay() {
+            
+            clearInterval(carouselIntervalId);
+            autoCarousel();
+            
+        };
+
+        
+        // prev and next cover post.
+        $('#prev-cover').click(function () {
+            coverSlider.carousel('prev');
+            restartPlay();
+        });
+        $('#next-cover').click(function () {
+            coverSlider.carousel('next');
+            restartPlay();
+        });
+        
+    });
+</script>
+
+
+
+<main class="content">
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。</p>
-<h2 id="剑指Offer-9"><a href="#剑指Offer-9" class="headerlink" title="剑指Offer 9"></a>剑指Offer 9</h2><p>用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer9</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Offer9 offer9 = <span class="keyword">new</span> Offer9();</span><br><span class="line">        <span class="keyword">int</span> i = offer9.rectCover(<span class="number">9</span>);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover</span><span class="params">(<span class="keyword">int</span> n )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rectCover(n - <span class="number">1</span>) + rectCover(n - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover1</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        a[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        a[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        a[<span class="number">2</span>]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;=n ; i++) &#123;</span><br><span class="line">            a[i]=a[i-<span class="number">1</span>]+a[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSplicing</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s1 =<span class="string">"java"</span>;</span><br><span class="line">        String s2 =<span class="string">"String"</span>;</span><br><span class="line">        String s3 = <span class="string">"javaString"</span>;</span><br><span class="line">        String s4 = s1+s2;</span><br><span class="line">        String s5 = s1+<span class="string">"String "</span>;</span><br><span class="line">        String s6 = <span class="string">"java"</span> + s2;</span><br><span class="line">        String s7 = <span class="string">"java"</span>+<span class="string">"String"</span>;</span><br><span class="line">        String s8 = s6.intern();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在字符串拼接的时候，如果两边有变量，相当于在堆中new了一个变量，所以内存地址不同false</span></span><br><span class="line">        System.out.println(s3==s4);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s5);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s6);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3==s7);<span class="comment">//true</span></span><br><span class="line">        <span class="comment">//intern（）会判断字符串常量池中是否有这个字符串，如果没有，则放入字符串常量池中，并加载一份javaString返回</span></span><br><span class="line">        <span class="comment">// 如果有则不放入，并返回字符串常量池中的javaString</span></span><br><span class="line">        System.out.println(s3==s8);<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>常量与常量的拼接结果在常量池，原理是编译期优化</li>
-<li>常量池中不会存在相同内容的变量</li>
-<li>只要其中有一个是变量，结果就在堆中。变量拼接的原理是StringBuilder</li>
-<li>如果拼接的结果调用intern()方法，则主动将常量池中还没有的字符串对象放入池中，并返回此对象地址</li>
-</ul>
-<p><strong>加上final修饰之后</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalStringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String s1 = <span class="string">"a"</span>;</span><br><span class="line">        <span class="keyword">final</span> String s2 = <span class="string">"b"</span>;</span><br><span class="line">        String s3 = <span class="string">"ab"</span>;</span><br><span class="line">        String s4 = s1+s2;</span><br><span class="line"></span><br><span class="line">        System.out.println(s3 == s4);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>但是如果使用的是final修饰，则是从常量池中获取</strong>。所以说拼接符号左右两边都是字符串常量或常量引用 则仍然使用编译器优化，即用StringBuilder的方式。也就是说被final修饰的变量，将会变成常量，类和方法将不能被继承、</p>
-<h2 id="字符串拼接与StringBulider"><a href="#字符串拼接与StringBulider" class="headerlink" title="字符串拼接与StringBulider"></a>字符串拼接与StringBulider</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test06</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">100000</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//System.out.println(method1()); 5043mm</span></span><br><span class="line">        <span class="comment">//System.out.println(method2());4mm</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String s = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;i ; j++) &#123;</span><br><span class="line">            s+=<span class="string">"a"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">return</span> end - start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">method2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;i ; j++) &#123;</span><br><span class="line">            s.append(<span class="string">"a"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">return</span> end - start;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结论：</p>
-<ul>
-<li><p>通过StringBuilder的append()方式添加字符串的效率，要远远高于String的字符串拼接方法<br>好处</p>
-</li>
-<li><p>StringBuilder的append的方式，自始至终只创建一个StringBuilder的对象</p>
-</li>
-<li><p>对于字符串拼接的方式，还需要创建很多StringBuilder对象和 调用toString时候创建的String对象</p>
-</li>
-<li><p>内存中由于创建了较多的StringBuilder和String对象，内存占用过大，如果进行GC那么将会耗费更多的时间</p>
-</li>
-</ul>
-<h2 id="java垃圾回收机制"><a href="#java垃圾回收机制" class="headerlink" title="java垃圾回收机制"></a>java垃圾回收机制</h2><p>java中采用的是自动垃圾回收，无需开发人员动手清除出垃圾。这样降低内存泄漏和内存溢出的风险。<br><strong>java堆中的内容是垃圾回收的重点区域</strong><br>在回收的次数上：</p>
-<ul>
-<li>频繁收集年轻代</li>
-<li>较少收集老年代</li>
-<li>几乎不动元空间<h2 id="判断一个对象应该被回收"><a href="#判断一个对象应该被回收" class="headerlink" title="判断一个对象应该被回收"></a>判断一个对象应该被回收</h2></li>
-</ul>
-<p>1.该对象没有与GC Roots相连<br>2.没有引用指向该对象</p>
-<h2 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h2><p>引用计算算法是发生在标记阶段。在启动GC之前要先判断哪些是可以回收的垃圾对象<br><strong>如何判断一个对象已经死亡</strong>：：当一个对象不再被其他任何一个对象引用时。</p>
-<p><strong>具体实现：</strong>对每个对象保存一个整数型的引用计数器属性，用于记录对象被引用的情况。如果被对象引用就加1，引用玩失效就减1，如果对象的引用计数器的数值为0.则该对象就可以被回收。<br><strong>优点：</strong>实现简单，垃圾对象易于辨识，判定效率高<br><strong>缺点：</strong>计数器需要占用引用空间。加1减1操作消耗时间，最重要的时它不能解决循环引用这一问题。</p>
-<h2 id="可达性分析算法（根搜索算法，追踪性垃圾收集）"><a href="#可达性分析算法（根搜索算法，追踪性垃圾收集）" class="headerlink" title="可达性分析算法（根搜索算法，追踪性垃圾收集）"></a>可达性分析算法（根搜索算法，追踪性垃圾收集）</h2><ul>
-<li>可达性分析算法时以根对象集合为起点，按照从上到下的方式搜索被根对象集合所连接的目标对象是否可达。</li>
-<li>使用可达分析算法后，内存中的存活对象都会被根对象集合直接或间接的连接着，如果目标对象没有任何相连，则不可达，该对象已死亡，可被回收。</li>
-</ul>
-<p><strong>GC Roots包括以下几类</strong></p>
-<ul>
-<li>虚拟机栈中的引用对象</li>
-<li>本地方法栈内引用对象</li>
-<li>方法区中类静态属性引用对象</li>
-<li>方法区中常量引用的对象  如：字符串常量池</li>
-<li>所有被synchroni持有的对象</li>
-</ul>
-<h2 id="垃圾清除阶段算法值标记-清除算法（Mark-Sweep）"><a href="#垃圾清除阶段算法值标记-清除算法（Mark-Sweep）" class="headerlink" title="垃圾清除阶段算法值标记-清除算法（Mark-Sweep）"></a>垃圾清除阶段算法值标记-清除算法（Mark-Sweep）</h2><p><strong>执行过程：</strong>当堆中的有效空间被耗尽的时候，就会停止整个程序（Stop The World），然后进行两项工作标记和清除<br><strong>标记：</strong>垃圾收集器引用根节点开始遍历，标记所有被引用的对象<br><strong>清除：</strong>垃圾收集器对堆内存从头到尾进行线性遍历，如果某个对象没有标记为可达现象，则将其回收。<br><strong>缺点：</strong>效率不高，在进行GC的时候，需要停止整个应用程序，这种方式清理处来的空闲内存是不连续的。</p>
-<h2 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h2><p><strong>核心思想：</strong>将活着的内存空间分为两块，每次只使用其中的一块，在垃圾回收时将正在使用的内存的存活的对象复制到未被使用的内存块中。之后清除正在使用的内存快中的所有对象，交换两个内存的角色，最后完成垃圾回收。<br><strong>优点：</strong>没有标记和清除的过程，实项简单高效。<br><strong>缺点：</strong>需要占用的空间很大，如果存活的对象的很多，需要复制的操作就很多，效率就很低。还需要修改大量的引用</p>
-<h2 id="标记-压缩算法（标记-整理算法）"><a href="#标记-压缩算法（标记-整理算法）" class="headerlink" title="标记-压缩算法（标记-整理算法）"></a>标记-压缩算法（标记-整理算法）</h2><p><strong>执行过程：</strong>第一阶段和标记-清除算个发一样，从根节点开始标记所有被引用的对象第二阶段将所有的存活对象压缩到内存的一段，按顺序存放。</p>
-<p>执行的效果相当于在标记-清除算法中进行了一次清理碎片化的过程，相当于标记-清除-整理算法。</p>
-<p><strong>优点：</strong>解决了标记-清除算法中的内存区域分散问题，消除了复制算法中内存减半的高额代价。<br><strong>缺点：</strong>从效率上看，标记-压缩算法的效率低于复制算法，移动对象时，如果对象被引用，还需要改变引用的地址。移动过程中，需要全程暂停用户的应用程序，即STW。</p>
-<h2 id="三种清除算法的对比"><a href="#三种清除算法的对比" class="headerlink" title="三种清除算法的对比"></a>三种清除算法的对比</h2><p><img src="https://img-blog.csdnimg.cn/20200725213300169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br>效率上来说，复制算法是当之无愧的老大，但是却浪费了太多内存。</p>
-<p>而为了尽量兼顾上面提到的三个指标，标记-整理算法相对来说更平滑一些，但是效率上不尽如人意，它比复制算法多了一个标记的阶段，比标记-清除多了一个整理内存的阶段。</p>
-<h2 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h2><p>目前几乎所有的GC都运用了分代收集算法。<br>在HotSpot中，基于分代的概念，GC所使用的内存回收算法必须解和年轻代和老年代的各自特点。（使用复制算法）<br>年轻代：区域相对老年代的较小，对象生命周期短，存活率低，回收频繁。<br>老年代：区域代，对象生命周期长，存活率高，回收不频繁<br>（一般有标记-清除算法和标记-整理算法混合使用）</p>
-
-      
+    <div id="indexCard" class="index-card">
+        <div class="container ">
+            <div class="card">
+                <div class="card-content">
+                    
+                        <div class="dream">
+    
+    <div class="title center-align">
+        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;我的梦想
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/" data-id="ckd5l921e0002bcq7cpzg3641" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JVM学习之方法区（元空间）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/" class="article-date">
-  <time datetime="2020-07-24T14:24:04.000Z" itemprop="datePublished">2020-07-24</time>
-</a>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">JVM学习之方法区（元空间）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="剑指-Offer-9"><a href="#剑指-Offer-9" class="headerlink" title="剑指 Offer 9"></a>剑指 Offer 9</h2><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//青蛙跳台</span></span><br><span class="line"><span class="comment">//一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer9</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Offer9 offer9 = <span class="keyword">new</span> Offer9();</span><br><span class="line">        <span class="keyword">int</span> i = offer9.jumpFloor(<span class="number">3</span>);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归算法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jumpFloor</span><span class="params">(<span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> jumpFloor(n-<span class="number">1</span>)*<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jumpFloor1</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        Arrays.fill(a,<span class="number">1</span>);</span><br><span class="line">        a[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i&lt;=n ;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span> ; j&lt;i ; j++)&#123;</span><br><span class="line">                a[i]+=a[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[n-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="方法区（元空间）"><a href="#方法区（元空间）" class="headerlink" title="方法区（元空间）"></a>方法区（元空间）</h2><h3 id="栈、堆和方法区的关系"><a href="#栈、堆和方法区的关系" class="headerlink" title="栈、堆和方法区的关系"></a>栈、堆和方法区的关系</h3><p><img src="https://img-blog.csdnimg.cn/20200724111640474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="方法区的理解"><a href="#方法区的理解" class="headerlink" title="方法区的理解"></a>方法区的理解</h2><ul>
-<li>方法区是独立与堆空间的内存空间。</li>
-<li>方法去与堆空间一样，是各个线程所共享的</li>
-<li>方法区在JVM启动时就被创建，并且它的实际物理内存是不连续的，但是逻辑上时连续的。</li>
-<li>方法区的内存大小和对空间一样都可以设置，也可以固定大小，但是在JDK8之后，最大的内存大小就时电脑内存剩余的大小。</li>
-<li>方法区的大小决定了可以存储多少个类，如果系统定义太多的类，导致内存不够，就会报OOM</li>
-<li>关闭JVM就会释放这个区域的内存。  <h2 id="设置方法区的大小"><a href="#设置方法区的大小" class="headerlink" title="设置方法区的大小"></a>设置方法区的大小</h2>windows下：</li>
-</ul>
-<p>-XX：MetaSpaceSize是21M（默认）<br>-XX：MaxMetaSpaceSize是-1 没有限制<br>可以用-XX：MetaSpaceSize和-XX：MaxMetaSpaceSize来设置与空间的大小.<br>如果超过最大内存就会抱OOM。</p>
-<h2 id="方法区的内部结构"><a href="#方法区的内部结构" class="headerlink" title="方法区的内部结构"></a>方法区的内部结构</h2><p>它用于存储已被虚拟机的类型信息，常量，静态变量，即时编译后的代码缓存。<br>用final修饰的静态变量在编译阶段就被赋了值。<br><img src="https://img-blog.csdnimg.cn/20200724222214183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="常量池和运行时常量池"><a href="#常量池和运行时常量池" class="headerlink" title="常量池和运行时常量池"></a>常量池和运行时常量池</h2><p>字节码文件中包含了常量池<br>方法区包含了运行时常量池<br>常量池表：包含各种字面量和类型，域和方法的符号引用。<br>常量池可以看作时一张表，虚拟机指令根据这张表找到吆执行的类名、方法名、参数类型、字面量等类型。</p>
-<p>运行时常量池，在加载类和接口到虚拟机后，就会创建对应的运行时常量池。<br>运行时常量池中包含多种不同的常量，包括编译期就已经明确的数值字面量，也包括到运行期解析后才能够获得的方法或者字段引用。此时不再是常量池中的符号地址了，这里换为真实地址。</p>
-<p>JDK1.7：有永久代，但已经逐步“去永久化了”，字符串常量池，静态变量移除，保存再堆中。<br>JDK1.8：无永久代，类型信息，字段，方法，常量保存再本地内存的元空间，但字符串常量池，静态变量人在堆中，</p>
-<h2 id="为什么永久代要被替换成元空间"><a href="#为什么永久代要被替换成元空间" class="headerlink" title="为什么永久代要被替换成元空间"></a>为什么永久代要被替换成元空间</h2><p>1.在某些场景下，如果动态加载类过多，容易产生Perm区的OOM，比如某个实际WEB工程中，因为功能点比较多，在运行过程章，要不断加载很多类，经常出现错误。而元空间使用本地内存，默认情况下，元空间的大小瘦本地大小的限制。<br>2.对永久代进行调优困难，Full GC浪费时间。</p>
-<h2 id="方法区的垃圾回收"><a href="#方法区的垃圾回收" class="headerlink" title="方法区的垃圾回收"></a>方法区的垃圾回收</h2><p>主要回收两个部分：常量池中的废弃常量和不再使用的类型。<br>HotSpot虚拟机对常量池的回收此略是明码的：只要常量池中的常量没有被任何地方引用，就可以回收。但是对于类型的回收就有点苛刻。<br>1.该类所有的实例都已经被回收，也就是Java堆中不存在该类及其任何派生子类的实例。加载该类的类加载器已经被回收，这个条件除非是经过精心设计的可替换类加载器的场景，如osGi、JSP的重加载等，否则通常是很难达成的。</p>
-<p>2.该类对应的java.lang.C1ass对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。I Java虚拟机被允许对满足上述三个条件的无用类进行回收，这里说的仅仅是“被允许”，而并不是和对象一样，没有引用了就必然会回收。关于是否要对类型进行回收，HotSpot虚拟机提供了-Xnoclassgc参数进行控制，还可以使用-verbose:class 以及 -XX：+TraceClass-Loading、-XX：+TraceClassUnLoading查看类加载和卸载信息</p>
-<p>3.在大量使用反射、动态代理、CGLib等字节码框架，动态生成JSP以及oSGi这类频繁自定义类加载器的场景中，通常都需要Java虚拟机具备类型卸载的能力，以保证不会对方法区造成过大的内存压力。</p>
-
-      
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            不是每个人都应该像我这样去建造一座水晶大教堂，但是每个人都应该拥有自己的梦想，设计自己的梦想，追求自己的梦想，实现自己的梦想。梦想是生命的灵魂，是心灵的灯塔，是引导人走向成功的信仰。有了崇高的梦想，只要矢志不渝地追求，梦想就会成为现实，奋斗就会变成壮举，生命就会创造奇迹。——罗伯·舒乐
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/" data-id="ckd5l921c0001bcq75p213uqy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
+
+                    
+
+                    
+
+                    
+
+                    
+                    <div id="recommend-sections" class="recommend">
+                        
 
 
-  
-    <article id="post-JVM学习第二天堆（heap）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/" class="article-date">
-  <time datetime="2020-07-23T13:41:34.000Z" itemprop="datePublished">2020-07-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">JVM学习第二天堆（heap）</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天继续学习JVM的第二天，主要学习了JVM运行时数据区的堆，也是JVM很重要的内容，宋红康老师讲解的非常好，很清晰。明天继续学习JVM中的方法区（也不叫方法区了，被元空间取代了）。</p>
-<h2 id="剑指Offer-7-斐波那契数列"><a href="#剑指Offer-7-斐波那契数列" class="headerlink" title="剑指Offer 7 斐波那契数列"></a>剑指Offer 7 斐波那契数列</h2><p><strong>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;=39</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;=39</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Soluion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> test = test2(<span class="number">7</span>);</span><br><span class="line">        System.out.println(test);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> test(n-<span class="number">1</span>)+test(n-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//常规定义数组实现</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">40</span>];</span><br><span class="line">        a[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        a[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> ; i&lt;=n ;i++)&#123;</span><br><span class="line"></span><br><span class="line">            a[i] = a[i-<span class="number">1</span>]+a[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>简单地讲，一个Native Methodt是一个Java调用非Java代码的接囗。一个Native Method是这样一个Java方法：该方法的实现由非Java语言实现，比如C。这个特征并非Java所特有，很多其它的编程语言都有这一机制，比如在C++中，你可以用extern “c” 告知c++编译器去调用一个c的函数。</p>
-<p>本地接口的作用是融合不同的编程语言为Java所用，它的初衷是融合C/C++程序。<br><strong>为什么吆条用本地方法</strong><br>因为java语言时从c/c++演变过来的，一些方法是由c/c++实现的，可以使我们不用去关心，这些方法的具体实现而区更好的使用这些方法。</p>
-<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>Java虚拟机栈于管理Java方法的调用，而本地方法栈用于管理<strong>本地方法的调用。</strong><br>并不是所有的JVM都支持本地方法。因为Java虚拟机规范并没有明确要求本地方法栈的使用语言、具体实现方式、数据结构等。如果JVM产品不打算支持native方法，也可以无需实现本地方法栈。</p>
-<p>在Hotspot JVM中，直接将本地方法栈和虚拟机栈合二为一。</p>
-<p>JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。</p>
-<p>JDK1.8开始，取消了Java方法区，取而代之的是位于直接内存的元空间（metaSpace）。</p>
-<h2 id="堆空间"><a href="#堆空间" class="headerlink" title="堆空间"></a>堆空间</h2><p>1.一个JVM实例只存在一个堆内存，堆也是java内存管理的核心区域。<br>2.java堆区在java启动的时候即被创建，其空间大小就确定了。是JVM管理的最大一块内存空间。<br>3.所有的线程共享java堆，在这里还可以划分私有的缓存区（TLAB）<br>4.在方法结束后，堆中的对象不会马上被移除，仅仅在垃圾收集的时候才会被移除。<br>5.堆，是GC（Garbage Colletion，垃圾收集器）执行垃圾回收的重点区域。</p>
-<h2 id="堆内存的划分"><a href="#堆内存的划分" class="headerlink" title="堆内存的划分"></a>堆内存的划分</h2><p><img src="https://img-blog.csdnimg.cn/2020072320292577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>新生代（Eden和Survivor区）+养老带</p>
-<p><strong>默认对空间的大小</strong><br>初始内存大小：物理内存电脑大小/64<br>Runtime.getRuntime().totalMemory/1024/1024;<br>最大内存大小：物理内存电脑大小/64<br>Runtime.getRuntime().maxMemory/1024/1024;</p>
-<ul>
-<li>-Xms10m 初始化10m堆内存</li>
-<li>-Xmx10m 最大分配10m堆内存    </li>
-</ul>
-<h2 id="年轻代和老年代"><a href="#年轻代和老年代" class="headerlink" title="年轻代和老年代"></a>年轻代和老年代</h2><p><strong>存储在JVM中的java对象又可以划分两类</strong><br>一类是生命周期较短的瞬时对象，这类对象的创建和销毁都非常迅速。<br>另一类对象的生命周期却非常长，在某些情况下还能与JVM的生命周期一样。</p>
-<p>年轻代又可以分为Eden空间（伊甸园空间）、Survivor0空间和Survivor1空间（有时也叫from区和to区）</p>
-<p><img src="https://img-blog.csdnimg.cn/20200723204203894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://img-blog.csdnimg.cn/20200723213338374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>默认-XX:NewRatio=2，表示新生代占1，老年代占2，新生代占整个堆的1/3</p>
-<p>可以修改-XX:NewRatio=4，表示新生代占1，老年代占4，新生代占整个堆的1/5</p>
-<p><strong>几乎所有的java对象都是在Eden区被new出来的，绝大部分的销毁都在新生代中进行</strong></p>
-<h2 id="对象的分配过程"><a href="#对象的分配过程" class="headerlink" title="对象的分配过程"></a>对象的分配过程</h2><p>首先对象是在新生代中的Eden空间被new出来的，当Eden空间的内存满了，就会启动垃圾回收机制（YGC），判断哪些是垃圾应该回收，如果没有回收掉的将会幸存下来放到Survivor0空间，并标记堆对象的年龄为1，如果Eden区的内存再次满了，就会再次启动垃圾回收机制，并且也会回收Survivor0区的垃圾，并把两个区间中幸存对象放到Survivor1空间中，并把新幸存的对象年龄标记为0，原来幸存的对象年龄加1，然后再次启动垃圾回收垃圾。重复操作，知道对象的年龄为15，如果再次加1就会晋升到老年代中。如果老年代的空间满了，就会启动Major GC，回收老年代中的垃圾。如果老年代的内存不够，就会抱OOM异常。<br><strong>80%的对象都会在Eden空间被回收</strong><br><strong>如果遇到一个超大对象，Eden空间放不下，会直接放入老年代中，如果老年代也不够，就直接抱OOM异常</strong><br><strong>经过YGC后，幸存者空间内存不够，则会之间放入老年代</strong></p>
-<p><strong>注意</strong>：在Eden区满了的时候，才会触发MinorGC，而幸存者区满了后，不会触发Minor GC操作</p>
-<p>如果Survivor区满了后，将会触发一些特殊的规则，也就是可能直接晋升老年代</p>
-<p><strong>常用的JVM调优工具：</strong>：VisualVm  、Jprofiler、GCViewer、GCEasy</p>
-<h2 id="Minor-GC、Major-GC和Full-GC"><a href="#Minor-GC、Major-GC和Full-GC" class="headerlink" title="Minor GC、Major GC和Full GC"></a>Minor GC、Major GC和Full GC</h2><p>JVM在进行GC时，并非每次都对上面的三个内存（新生区，老年代，方法区）区域一起回收，大部分回收都是指新生代<br>针对Hot Spot Vm的实现，它里面的GC按照回收区域又分为两大类型：一种时部分收集（Partial GC），一种时整堆收集（Full GC）<br>一、部分收集：不是完整收集java堆的垃圾，其中又分为：<br>        1.新生代收集（Minor GC/Young GC）：只是新生代的垃圾收集<br>        2.老年代收集（Major GC/Old GC）：只是老年代的垃圾收集。<br>        3.混合收集（Mixed GC）：收集整个新生代以及部分老年代的垃圾收集，目前，只有G1 GC会有这种行为。<br>二、整堆收集（Full GC）：收集整个java堆和方法区的垃圾收集</p>
-<p>年轻代GC（Minor GC）非常频繁，回收速度也快，但是会引发STW暂停，其他用户线程，等垃圾回收结束，用户线程才恢复，但是速度快影响不大。</p>
-<p>老年代GC（Major GC）的出现，往往会伴随至少一次的Minor GC，如果老年代空间不足，先尝试触发Minor GC，如果之后空间还不足，则触发Major GC，Major GC的速度一班会比Yonug GC慢10倍以上，STW时间会更长。</p>
-<p>Full GC触发的条件<br>1.调用System。gc（）时，系统会建议执行Full GC，但是不必执行。<br>2.老年代内存不足<br>3.方法去/元空间不足</p>
-<h2 id="为什么需要把java堆分代？不分代就不能正常工作吗？"><a href="#为什么需要把java堆分代？不分代就不能正常工作吗？" class="headerlink" title="为什么需要把java堆分代？不分代就不能正常工作吗？"></a>为什么需要把java堆分代？不分代就不能正常工作吗？</h2><p>其实不分代完全可以，分代的唯一理由就是优化GC性能。如果没有分代，那所有的对象都在一块，就如同把一个学校的人都关在一个教室。GC的时候要找到哪些对象没用，这样就会对堆的所有区域进行扫描。而很多对象都是朝生夕死的，如果分代的话，把新创建的对象放到某一地方，当GC的时候先把这块存储“朝生夕死”对象的区域进行回收，这样就会腾出很大的空间出来</p>
-<h2 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h2><p>优先分配到Eden<br>大对象直接分配到老年代，尽量避免程序中出现过多的大对象<br>长期存活的对象分配到老年代中</p>
-<h2 id="TLAB-默认开启"><a href="#TLAB-默认开启" class="headerlink" title="TLAB(默认开启)"></a>TLAB(默认开启)</h2><p><strong>为什么要有TLAB</strong><br>因为创建的对象堆在堆中分配内存，而任何线程都可以访问堆中的数据，由于堆中的对象的创建十分频繁，在并发的环境下时线程不安全的。所以就需要TLAB。<br><img src="https://img-blog.csdnimg.cn/20200723213517466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><strong>什么是TLAB</strong><br>JVM为每个线程分配了一个私有的缓存区域，在Eden空间中，避免了一系列的线程安全问题，同时还提升了分配的屯渡良，因此我们还可以将这种内存分配方式称为快速分配策略。<br><strong>如果JVM创建TLAB失败就会为尝试加锁，保证其原子性</strong></p>
-<h2 id="堆空间的参数设置"><a href="#堆空间的参数设置" class="headerlink" title="堆空间的参数设置"></a>堆空间的参数设置</h2><p>-XX：+PrintFlagsInitial：查看所有的参数的默认初始值</p>
-<p>-XX：+PrintFlagsFinal：查看所有的参数的最终值（可能会存在修改，不再是初始值）</p>
-<p>-Xms：初始堆空间内存（默认为物理内存的1/64）</p>
-<p>-Xmx：最大堆空间内存（默认为物理内存的1/4）</p>
-<p>-Xmn：设置新生代的大小。（初始值及最大值）</p>
-<p>-XX:NewRatio：配置新生代与老年代在堆结构的占比</p>
-<p>-XX:SurvivorRatio：设置新生代中Eden和S0/S1空间的比例</p>
-<p>-XX:MaxTenuringThreshold：设置新生代垃圾的最大年龄</p>
-<h2 id="堆是为分配对象存储的唯一选择吗（不是）"><a href="#堆是为分配对象存储的唯一选择吗（不是）" class="headerlink" title="堆是为分配对象存储的唯一选择吗（不是）"></a>堆是为分配对象存储的唯一选择吗（不是）</h2><p>如果经过逃逸分析后发现，一个对象在方法内部使用，则认为没有发生逃逸，那么就可能分配到栈上，当一个对象在方法中被定义后，对象只在方法内部使用，则认为没有发生逃逸，则使用栈上分配，如果被外部方法引用，则认为发生逃逸。逃逸分析也是堆JVM的一种优化，减少了GC的启动。JDK7之后就开始了逃逸分析。</p>
-
-      
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/" data-id="ckd5l921e0003bcq7hnpu1m5u" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+    
+
+    
+
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="JVM学习之垃圾回收器">
+                            
+                            <span class="card-title">JVM学习之垃圾回收器</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                剑指 Offer12输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。（保证数组的稳定性）
+123456789101112
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-27
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="垃圾回收相关概念">
+                            
+                            <span class="card-title">垃圾回收相关概念</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                剑指Offer 11输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。
+123456789101112131415161718//输入一个整数，输出该数32位二进制表示中1的个数。其中负数用补码表示。public cla
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="JVM学习之字符串常量池和垃圾收集算法">
+                            
+                            <span class="card-title">JVM学习之字符串常量池和垃圾收集算法</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                今天学习了JVM中的字符串常量池和集中垃圾手机算法，收获很大。
+剑指Offer 9用2×1的小矩形去填充2×n的矩形，问共有多少种填充的方法？
+12345678910111213141516171819202122232425262728/
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="JVM学习之方法区（元空间）">
+                            
+                            <span class="card-title">JVM学习之方法区（元空间）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                剑指 Offer 9一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+123456789101112131415161718192021222324252627282930313
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-24
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="JVM学习第二天堆（heap）">
+                            
+                            <span class="card-title">JVM学习第二天堆（heap）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                今天继续学习JVM的第二天，主要学习了JVM运行时数据区的堆，也是JVM很重要的内容，宋红康老师讲解的非常好，很清晰。明天继续学习JVM中的方法区（也不叫方法区了，被元空间取代了）。
+剑指Offer 7 斐波那契数列大家都知道斐波那契数列，
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈">
+                            
+                            <span class="card-title">JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                参考了尚硅谷宋红康老师的JVM视频，将的很棒，也很详细。今天学习了类加载的过程，一些类加载器，双亲委派机制，运行时数据区中的程序计数器（PC寄存器）和虚拟机栈。今天学到了很多，明天继续加油吧！！！
+剑指offer 6：把一个数组最开始的若干
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/21/mysql-%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8Bjvm%E7%9A%84%E5%AD%A6%E4%B9%A0/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="mysql 知识梳理和开始jvm的学习">
+                            
+                            <span class="card-title">mysql 知识梳理和开始jvm的学习</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                每天一道 剑指offer5.用两个栈实现一个队列栈：先进后出队列：先进先出队列push操作：将元素放入stack1中。队列pop操作：如果stack2中没有元素，将stack1中的元素放入stack2中，再stack2.pop（）；如果st
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/20/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="剑指offer  重建二叉树">
+                            
+                            <span class="card-title">剑指offer  重建二叉树</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354/** * 输入某二叉树的前序遍历和中序遍
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/19/%E5%89%91%E6%8C%87offer2-3/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="剑指offer2,3">
+                            
+                            <span class="card-title">剑指offer2,3</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                剑指offer 2替换空格实现一个函数，将一个字符串中的每一个空格替换成“%20”；例，当字符串为“We Are Happy”,则经过替换之后的字符串为“We%20Are%20Happy”
+1234567891011121314151617
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/18/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="复习java基础知识（四）">
+                            
+                            <span class="card-title">复习java基础知识（四）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                每天学习一道《剑指offer》的题目剑指offer第一道题：
+在一个二维数组中（每一个数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序，请完成一个函数，输入这样的一个二维数组和一个证书，判断数组中是否
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-18
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/17/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%89%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="复习java基础知识（三）">
+                            
+                            <span class="card-title">复习java基础知识（三）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                上午学习了一些关于算法之类的题目，突然想到io下面有个File类就有穿插着复习了一下，复习了昨天的内容。下午继续学习基础知识。知识点好多，感觉头发保不住了。明天继续。
+关于java.io.File的方法1234567891011121314
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/07/16/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="复习java基础知识（二）">
+                            
+                            <span class="card-title">复习java基础知识（二）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                上午复习了，数据结构中的树，树的三种遍历方式，树的最大值，最小值的查找，层序遍历等等。还有复习了二叉树，二叉查找树，平衡二叉树，红黑树，B树，B+树。二叉树的相关方法
+123456789101112131415161718192021222
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                zzz
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+
+</main>
 
 
-  
-    <article id="post-JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/" class="article-date">
-  <time datetime="2020-07-22T14:08:36.000Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/">JVM的类加载器、双亲委派机制、程序计数器和虚拟机栈</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考了尚硅谷宋红康老师的JVM视频，将的很棒，也很详细。今天学习了类加载的过程，一些类加载器，双亲委派机制，运行时数据区中的程序计数器（PC寄存器）和虚拟机栈。今天学到了很多，明天继续加油吧！！！</p>
-<h2 id="剑指offer-6："><a href="#剑指offer-6：" class="headerlink" title="剑指offer 6："></a>剑指offer 6：</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。<br>输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。<br>例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。<br>NOTE：给出的所有元素都大于0，若数组大小为0，请返回0</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer6</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a =&#123;<span class="number">6501</span>,<span class="number">6828</span>,<span class="number">6963</span>,<span class="number">7036</span>,<span class="number">7422</span>,<span class="number">7674</span>,<span class="number">8146</span>,<span class="number">8468</span>,<span class="number">8704</span>,<span class="number">8717</span>,<span class="number">9170</span>,<span class="number">9359</span>,<span class="number">9719</span>,<span class="number">9895</span>,<span class="number">9896</span>,<span class="number">9913</span>,<span class="number">9962</span>,<span class="number">154</span>,<span class="number">293</span>,<span class="number">334</span>,<span class="number">492</span>,<span class="number">1323</span>,<span class="number">1479</span>,<span class="number">1539</span>,<span class="number">1727</span>,<span class="number">1870</span>,<span class="number">1943</span>,<span class="number">2383</span>,<span class="number">2392</span>,<span class="number">2996</span>,<span class="number">3282</span>,<span class="number">3812</span>,<span class="number">3903</span>,<span class="number">4465</span>,<span class="number">4605</span>,<span class="number">4665</span>,<span class="number">4772</span>,<span class="number">4828</span>,<span class="number">5142</span>,<span class="number">5437</span>,<span class="number">5448</span>,<span class="number">5668</span>,<span class="number">5706</span>,<span class="number">5725</span>,<span class="number">6300</span>,<span class="number">6335</span>&#125;;</span><br><span class="line">        Offer6 offer6 = <span class="keyword">new</span> Offer6();</span><br><span class="line">        <span class="keyword">int</span> solution = offer6.solution(a);</span><br><span class="line">        System.out.println(solution);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (a.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (a.length==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt;a.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i]&gt;a[i+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> a[i+<span class="number">1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (i==a.length-<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> a[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p><img src="https://img-blog.csdnimg.cn/20200722143551297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br><strong>加载（Loading）</strong>：简单来说就是指把class字节码文件从各个来源，通过类加载装载到内存中，生成该类的class类型，作为方法区这个类的数据访问入口。<br><strong>验证（Verrfy）</strong>：目的在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载的正确性，不会危害虚拟机的自身安全。<br><strong>准备（Prepare）</strong>：为类分配内存并设置改类的初始值<br><strong>解析（Resolve）</strong>：将常量池中的符号引用转化为直接引用的过程（虚拟机会把类类名，方法名，字段名这些符号引用替换为具体的内存地址或偏移量，也就是直接引用。）<br><strong>初始化（Initialization）</strong>:对静态变量和静态代码块执行初始化工作。</p>
-<h2 id="加载器的分类"><a href="#加载器的分类" class="headerlink" title="加载器的分类"></a>加载器的分类</h2><p><img src="https://img-blog.csdnimg.cn/20200722145148794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><strong>启动类加载器（引导类加载器 Bootstrap ClassLoader）</strong>：主要加载的时Java中的核心类库，这个加载器时用C/C++写的，在Java中不能获取。<br><strong>扩展类加载器（Extension ClassLoader）</strong>：主要加载一些扩展的类库，派生于ClassLoader类，java语言写的<br><strong>应用程序加载器（AppClassLoader）</strong>：虚拟机自带的，java语言编写，派生与ClassLoader，主要加载我们自己写的类。</p>
-<h2 id="获取ClassLoader的途径"><a href="#获取ClassLoader的途径" class="headerlink" title="获取ClassLoader的途径"></a>获取ClassLoader的途径</h2><p>1.clazz.getClassLoader()     获取实例类的加载器2.Thread.currentThread.getContextClassLoader()  当前线程上下文的ClassLoader<br>3.ClassLoader.getSystemClassLoader  获取系统的classLoader。<br>4.ClassLoader.getparet（）  获取加载器的父类。</p>
-<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><p><img src="https://img-blog.csdnimg.cn/20200722212658948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>java虚拟机对class文件采用的时按需加载的方式，也就是当需要使用该类时才会将它的class文件加载到内存中。而加载某个类的class文件时，java虚拟机采用双亲委派机制。<br><strong>工作原理</strong>：如果一个类收到了加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行，如果父类还有父类，则进一步委托，知道达到底层，如果父类加载器可以文成加载，则返回，倘若父类加载器无法完成，子类才回去加载。<br><strong>优势</strong>：避免类的重复加载、防止核心API被修改。</p>
-<p><strong>在java中如何判断两个class对象是否相同</strong><br>1.类的完整类名必须一致，包括包名。<br>2.加载这个类的ClassLoader也必须相同</p>
-<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p><img src="https://img-blog.csdnimg.cn/20200722212739167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br>heap、Method Area为线程共享的，只有一份。<br>PC、VMS、NMS每个线程独有，随着线程的开始和结束而创建和销毁。<br><img src="https://img-blog.csdnimg.cn/20200722212929489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><p><strong>作用</strong>：PC寄存器用来存储执行下一条指令的地址，也即将要执行的指令代码，由执行引擎读取下一条指令。<br><img src="https://img-blog.csdnimg.cn/20200722213021726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt="">1.它是一块很小的内存空间，几乎可以忽略不计，也是运行速度最快的存储区域，<br>2.在JVM规范中，每一个线程都有程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。<br>3.程序计数器会存储当前小恒成正在执行的java方法的JVM指令地址，如果执行native方法，则是未指定值（undifind）。<br>4.它是唯一一个在java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p>
-<p><strong>使用PC寄存器存储字节码指令有什么用</strong><br>因为CPU需要不停的切换各个线程，这个时候切换回来以后，就的知道接着从那哪里继续执行。<br><strong>PC寄存器卫生么会被设定为线程私有的</strong><br>多线程在一个特定的时间段内执行执行其中的一个线程方法，CPU会不停地做任务切换，为了准确地记录各个线程正在执行的当前字节码指令地址，最好的办法自然是为每一个线程分配以个PC寄存器。</p>
-<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><p>栈是运行时单位，而堆时存储的单位。<br>java虚拟机，早期也叫java栈，每个线程在创建一个虚拟机栈，其内部保存一个个栈帧，对应这一次次的java方法调用，生命周期和线程一致。<br><strong>特点</strong><br>1.栈是一种快速有效的分配存储方式，访问速度仅次于程序计数器。<br>2.JVM直接堆java栈的操作只有两个出栈和入栈<br>3.对于栈来说不存在垃圾回收问题，但存在OOM问题。</p>
-<h2 id="栈中出现的异常"><a href="#栈中出现的异常" class="headerlink" title="栈中出现的异常"></a>栈中出现的异常</h2><p>栈中可能出现的异常</p>
-<p>Java 虚拟机规范允许Java栈的大小是动态的或者是固定不变的。</p>
-<p><strong>StackOverFlowError</strong>如果采用固定大小的Java虚拟机栈，那每一个线程的Java虚拟机栈容量可以在线程创建的时候独立选定。如果线程请求分配的栈容量超过Java虚拟机栈允许的最大容量，Java虚拟机将会抛出一个StackoverflowError 异常。<br>可以使用-Xss内存大小  来设置栈的大小</p>
-<p><strong>OutOfmemoryError</strong>如果Java虚拟机栈可以动态扩展，并且在 尝试扩展的时候无法申请到足够的内存，或者在创建新的线程时没有足够的内存去创建对应的虚拟机栈，那Java虚拟机将会抛出一个 outofMemoryError 异常。<br><strong>栈中方法的结束方式</strong><br>1.正常结束<br>2.方法执行时，未抛出异常</p>
-<h2 id="栈帧的内部结构"><a href="#栈帧的内部结构" class="headerlink" title="栈帧的内部结构"></a>栈帧的内部结构</h2><p>1.局部变量表<br>2.操作数栈<br>3.动态链接<br>4.方法返回地址<br>5.一些附加信息</p>
-<h2 id="局部变量表（局部变量数组，本地变量表）"><a href="#局部变量表（局部变量数组，本地变量表）" class="headerlink" title="局部变量表（局部变量数组，本地变量表）"></a>局部变量表（局部变量数组，本地变量表）</h2><p>定义一个数字数组，主要用于存储方法参数和定义方法体内的局部变量，<br>这些数据类型包括基本数据类型、对象引用（reference）、以及returnAddress类型<br>由于线程的数据类型时私有的，所以不存在数据安全问题，局部变量表的大小一旦确定下来，就不会改变。</p>
-<p><strong>关于slot</strong><br>局部变量表最基本的存储单位就是slot（槽），局部变量表中存放编译期可知的各种基本数据类型（8种），引用类型（reference），returnAddress类型的变量。<br>在局部变量表里，32位以内的类型只占用一个slot（包括returnAddress类型），64位的类型（1ong和double）占用两个slot。</p>
-<p>byte、short、char 在存储前被转换为int，boolean也被转换为int，0表示false，非0表示true。<br>1ong和double则占据两个slot。<br><img src="https://img-blog.csdnimg.cn/20200722215506852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""><br><strong>注意</strong>如果当前帧市幼构造方法或者实例方法创建时，那么该对象引用this放在index为0处，其余的参数按照参数顺序排序。</p>
-<h2 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h2><p>操作数栈：Operand Stack</p>
-<p>每一个独立的栈帧除了包含局部变量表以外，还包含一个后进先出（Last - In - First -Out）的 操作数栈，也可以称之为 表达式栈（Expression Stack）</p>
-<p>操作数栈，在方法执行过程中，根据字节码指令，往栈中写入数据或提取数据，即入栈（push）和 出栈（pop）</p>
-<p>某些字节码指令将值压入操作数栈，其余的字节码指令将操作数取出栈。使用它们后再把结果压入栈<br>比如：执行复制、交换、求和等操作<br><strong>操作数栈并非采用访问索引的方式来进行数据访问的，而是只能通过标准的入栈和出栈操作来完成一次数据访问</strong></p>
-<h2 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h2><p><img src="https://img-blog.csdnimg.cn/20200722220204854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>每一个栈帧内部都包含一个指向运行时常量池中该栈帧所属方法的引用包含这个引用的目的就是为了支持当前方法的代码能够实现动态链接（Dynamic Linking）。</p>
-<h3 id="早期绑定"><a href="#早期绑定" class="headerlink" title="早期绑定"></a>早期绑定</h3><p>早期绑定就是指被调用的目标方法如果在编译期可知，且运行期保持不变时，即可将这个方法与所属的类型进行绑定，这样一来，由于明确了被调用的目标方法究竟是哪一个，因此也就可以使用静态链接的方式将符号引用转换为直接引用。</p>
-<h3 id="晚期绑定"><a href="#晚期绑定" class="headerlink" title="晚期绑定"></a>晚期绑定</h3><p>如果被调用的方法在编译期无法被确定下来，只能够在程序运行期根据实际的类型绑定相关的方法，这种绑定方式也就被称之为晚期绑定。</p>
-<h2 id="方法返回地址"><a href="#方法返回地址" class="headerlink" title="方法返回地址"></a>方法返回地址</h2><p>存放调用该方法的pc寄存器的值。一个方法的结束，有两种方式：</p>
-<p>正常执行完成</p>
-<p>出现未处理的异常，非正常退出</p>
-<p>无论通过哪种方式退出，在方法退出后都返回到该方法被调用的位置。方法正常退出时，调用者的pc计数器的值作为返回地址，即调用该方法的指令的下一条指令的地址。而通过异常退出的，返回地址是要通过异常表来确定，栈帧中一般不会保存这部分信息。</p>
-<p>当一个方法开始执行后，只有两种方式可以退出这个方法：</p>
-<p>执行引擎遇到任意一个方法返回的字节码指令（return），会有返回值传递给上层的方法调用者，简称正常完成出口；</p>
-<p>一个方法在正常调用完成之后，究竟需要使用哪一个返回指令，还需要根据方法返回值的实际数据类型而定。<br>在字节码指令中，返回指令包含ireturn（当返回值是boolean，byte，char，short和int类型时使用），lreturn（Long类型），freturn（Float类型），dreturn（Double类型），areturn。另外还有一个return指令声明为void的方法，实例初始化方法，类和接口的初始化方法使用。<br>在方法执行过程中遇到异常（Exception），并且这个异常没有在方法内进行处理，也就是只要在本方法的异常表中没有搜索到匹配的异常处理器，就会导致方法退出，简称异常完成出口。</p>
-<p>方法执行过程中，抛出异常时的异常处理，存储在一个异常处理表，方便在发生异常的时候找到处理异常的代码</p>
-<p><strong>本质上，方法的退出就是当前栈帧出栈的过程。此时，需要恢复上层方法的局部变量表、操作数栈、将返回值压入调用者栈帧的操作数栈、设置PC寄存器值等，让调用者方法继续执行下去。</strong></p>
-<p>正常完成出口和异常完成出口的区别在于：通过异常完成出口退出的不会给他的上层调用者产生任何的返回值。</p>
-<h2 id="一些附加信息"><a href="#一些附加信息" class="headerlink" title="一些附加信息"></a>一些附加信息</h2><p>栈帧中还允许携带与Java虚拟机实现相关的一些附加信息。例如：对程序调试提供支持的信息。</p>
-
-      
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/22/JVM%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E3%80%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E3%80%81%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/" data-id="ckd5l921i0008bcq7hvcu89p3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-mysql-知识梳理和开始jvm的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/mysql-%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8Bjvm%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-07-21T13:59:03.000Z" itemprop="datePublished">2020-07-21</time>
-</a>
+
+
+    <footer class="page-footer bg-color">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/mysql-%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8Bjvm%E7%9A%84%E5%AD%A6%E4%B9%A0/">mysql 知识梳理和开始jvm的学习</a>
-    </h1>
-  
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
 
-      </header>
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="每天一道-剑指offer"><a href="#每天一道-剑指offer" class="headerlink" title="每天一道 剑指offer"></a>每天一道 剑指offer</h2><p>5.用两个栈实现一个队列<br>栈：先进后出<br>队列：先进先出<br>队列push操作：将元素放入stack1中。<br>队列pop操作：如果stack2中没有元素，将stack1中的元素放入stack2中，再stack2.pop（）；如果stack2中有元素，直接stack2.pop（）；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用两个栈实现队列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">//存</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span></span>&#123;</span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!stack2.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">while</span> (!stack1.isEmpty())&#123;</span><br><span class="line">                 stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="事务的特性-ACID"><a href="#事务的特性-ACID" class="headerlink" title="事务的特性(ACID)"></a>事务的特性(ACID)</h2><p>原子性（atomicity）:事务时最小的工作单元，不可再分割。<br>一致性（consistency）：多条sql语句，要么同时成功，要么同时失败。<br>隔离性（isolution）:事务A与事务B之间有隔离。<br>持久性（durability）:最终的数据必须持久化到硬盘上，事务才算结束。</p>
-<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><p>第一级别：读未提交（read unconmitted）:事务A和事务B，事务B修改了数据，没有提交，而事务A可以立马读取到。产生脏读现象。</p>
-<p>第二级别：读已提交（read committed）：事务A和事务B，事务B修改了数据，并提交，事务A才能读到，解决了脏读现象，但是产生了不可重复读。</p>
-<p>第三级别 ：可重复读（repeatable read）：事务B修改了数据，并提交，但事务A读到的依然是事务B修改前的数据。解决了不可重复读的问题，但是产生了幻读的情况。读到的不是磁盘中的数据，二十备份的数据。</p>
-<p>第四级别：串行化读/序列化读：解决所有问题，强制事务排序，使其不会发生冲突。但是需要等待另一个事务的结束，效率低。</p>
-<h2 id="数据库设计三范式"><a href="#数据库设计三范式" class="headerlink" title="数据库设计三范式"></a>数据库设计三范式</h2><p>设计表的依据，按照三范式设计的表不会出现数据的冗余；<br>第一范式：任何一张表都应该有主键，并且每个字段原子性不可再分，<br>第二范式，建立再第一范式基础上，所有非主键字段完全依赖主键，不能产生部份依赖，如果多对多，三张表，关系表两个外键。<br>第三范式：建立在第二范式上，所有非主键字段直接依赖主键，不能产生传递（间接）依赖。一对多，两张表，多的表加外键。</p>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>就相当于一本书的目录，通过没目录可以快速的找到对应的资源。就是把无序的数据变成有序的查询，如果没有索引就会遍历整张表进行查找<br>创建索引：create index 索引名称 on 表名（字段名）<br>删除索引：drop index 索引名称  on （字段名）</p>
-<h3 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h3><p>普通索引：基本的索引类型，没有唯一性的限制，允许为NULL值。<br>唯一索引: 数据列不允许重复，允许为NULL值，一个表允许多个列创建唯一索引。<br>主键索引: 数据列不允许重复，不允许为NULL，一个表只能有一个主键。<br>联合索引：几个字段一起作为索引</p>
-<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><p>B+树索引和hash索引<br>但现在大多数都是使用B+树，因为hash索引不能应用再范围查找中；等值查找效率很快。范围查找中B+地叶子节点有双向指针，所以范围查找效率高<br>B+树的优点<br>1.由于B+树在内部节点上不含数据信息，因此在内存页中能够存放更多的key。 数据存放的更加紧密，<br>2.B+树的叶子结点都是相链的，因此对整棵树的便利只需要一次线性遍历叶子结点即可。而且由于数据顺序排列并且相连，所以便于区间查找和搜索。而B树则需要进行每一层的递归遍历。相邻的元素可能在内存中不相邻</p>
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>Myisam:不提供事务的支持，也不支持行级锁和外键<br>Innodb:提供了对数据库ACID事务的支持。并且还提供了行级锁和外键的约束。它的设计的目标就是处理大数据容量的数据库系统</p>
-<p><strong>区别</strong><br>1.InnoDB索引是聚簇索引，MyISAM索引是非聚簇索引。<br>2.InnoDB的主键索引的叶子节点存储着行数据，因此主键索引非常高效。<br>3.MyISAM索引的叶子节点存储的是行数据地址，需要再寻址一次才能得到数据。<br>4.InnoDB非主键索引的叶子节点存储的是主键和其他带索引的列数据，因此查询时做到覆盖索引会非常高效。<br>5.InnoDB支持行级锁，而MyISAM支持表级锁</p>
-<p>Myisam和Innodb是用b+数的数据结构来存储索引的。</p>
-<h2 id="为什么Innodb必须要有主键。"><a href="#为什么Innodb必须要有主键。" class="headerlink" title="为什么Innodb必须要有主键。"></a>为什么Innodb必须要有主键。</h2><p>因为如果不加主键，依然会用B+树的数据结构存储，Innodb会从数据字段找到没有相同数据的字段，作为索引，如果没有找到，会在数据中添加一行隐藏列作为索引。非常消耗资源。</p>
-<h2 id="为什么还要推荐使用自增的整型主键，不用UUID"><a href="#为什么还要推荐使用自增的整型主键，不用UUID" class="headerlink" title="为什么还要推荐使用自增的整型主键，不用UUID"></a>为什么还要推荐使用自增的整型主键，不用UUID</h2><p>因为是以B+树的结构存储，底层会存储过程会不断的做比较，用整型做比较很方便，UUID比较比较麻烦，另外，整型的存储过程会占用更少的内存。</p>
-<h2 id="最左前缀法则"><a href="#最左前缀法则" class="headerlink" title="最左前缀法则"></a>最左前缀法则</h2><blockquote>
-<p>最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。<br>———————————————— 版权声明：本文为CSDN博主「ThinkWon」的原创文章，遵循CC 4.0<br>BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/ThinkWon/article/details/104778621" target="_blank" rel="noopener">https://blog.csdn.net/ThinkWon/article/details/104778621</a></p>
-</blockquote>
-<h2 id="常见的sql优化"><a href="#常见的sql优化" class="headerlink" title="常见的sql优化"></a>常见的sql优化</h2><p>1..查询条件中，一定不要使用select * ，因为会返回过多无用的字段会降低查询效率。应该使用具体的字段代替  *，只返回使用到的字段。<br>2.尽量不要用in，not in，会造成全表扫描，用between  and  代替<br>3.尽量不要使用or，会造成全表扫描，用union代替。<br>4.where条件里尽量不要进行null值的判断，null的判断也会造成全表扫描<br>5.使用索引，索引是提高数据库性能的常用方法，特别是对于max、min、order by查询时。<br>6.避免使用&lt;&gt;,!=<br>7.开启事务，当数据库执行多条语句出现错误时，事务会回滚，可以维护数据库完整性。</p>
-<p>今天初学jvm  选择看尚硅谷宋红康老师的讲解</p>
-<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><h3 id="JVM虚拟机"><a href="#JVM虚拟机" class="headerlink" title="JVM虚拟机"></a>JVM虚拟机</h3><p>作用：java虚拟机就是二进制字节码的运行环境<br>特点：1，一次编译到处运行<br>2，自动的内存管理<br>3，自动垃圾回收机制</p>
-<h3 id="JVM的位置"><a href="#JVM的位置" class="headerlink" title="JVM的位置"></a>JVM的位置</h3><p><img src="https://img-blog.csdnimg.cn/20200721214437871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt=""></p>
-<h3 id="jvm的整体结构"><a href="#jvm的整体结构" class="headerlink" title="jvm的整体结构"></a>jvm的整体结构</h3><p> <img src="https://img-blog.csdnimg.cn/20200721214513655.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="jvm的生命周期j"><a href="#jvm的生命周期j" class="headerlink" title="jvm的生命周期j"></a>jvm的生命周期j</h3><p><strong>虚拟机的启动</strong>：Java虚拟机的启动是通过引导类加载器创建一个初始类来完成的，这个类是由虚拟机的具体实现指定的。<br><strong>虚拟机的执行</strong>：程序开始执行是他才运行，程序结束时他就停止，执行一个所谓的java程序的时候，真真正正在执行的是一个叫做java虚拟机的进程<br><strong>虚拟机的退出</strong>：1，程序的正常结束。<br>2，程序在执行过程中遇到了异常或错误而终止。t<br>3，由于操作系统出现了问题而导致java虚拟机进程终止。<br>4，线程的Runtime类或System类的exit方法，或Runtime类的halt方法。</p>
-<h3 id="常见的jvm"><a href="#常见的jvm" class="headerlink" title="常见的jvm"></a>常见的jvm</h3><p>HotSpot VM：目前我们所使用最广泛的。<br>Sun Classic VM：世界上第一款商用的jvm<br>还有IBM的J9、JRockit、Taobao JVM等</p>
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
 
-      
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/21/mysql-%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8Bjvm%E7%9A%84%E5%AD%A6%E4%B9%A0/" data-id="ckd5l921h0006bcq71fv5b9ds" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zzz</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
 
 
-  
-    <article id="post-剑指offer-重建二叉树" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/20/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
-  <time datetime="2020-07-20T14:00:29.000Z" itemprop="datePublished">2020-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/">剑指offer  重建二叉树</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</span></span><br><span class="line"><span class="comment"> * 例如输入前序遍历序列&#123;1,2,4,7,3,5,6,8&#125;和中序遍历序列&#123;4,7,2,1,5,3,8,6&#125;，则重建二叉树并返回。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] pre = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] in=&#123;<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        TreeNode treeNode = binaryTree(pre, in);</span><br><span class="line">        System.out.println(treeNode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">binaryTree</span><span class="params">(<span class="keyword">int</span>[] pre , <span class="keyword">int</span>[] mid)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> solution(pre,mid,<span class="number">0</span>,pre.length-<span class="number">1</span>,<span class="number">0</span>,mid.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> TreeNode <span class="title">solution</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] mid, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> left1, <span class="keyword">int</span> right1)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (left&gt;=right||left1&gt;=right1)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> val = pre[left];</span><br><span class="line">        TreeNode treeNode = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">        <span class="keyword">int</span> count =left1;</span><br><span class="line">        <span class="keyword">while</span> (mid[count]!=val)&#123;</span><br><span class="line">            count++;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        count-=left1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        solution(pre,mid,left+<span class="number">1</span>,left+count,left1,left1+count-<span class="number">1</span>);</span><br><span class="line">        solution(pre,mid,left+count+<span class="number">1</span>,right,left1+count+<span class="number">1</span>,right1);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> treeNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> val;</span><br><span class="line">     TreeNode left;</span><br><span class="line">     TreeNode right;</span><br><span class="line">     TreeNode(<span class="keyword">int</span> x) &#123; val = x; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"TreeNode&#123;"</span> +</span><br><span class="line">                <span class="string">"val="</span> + val +</span><br><span class="line">                <span class="string">", left="</span> + left +</span><br><span class="line">                <span class="string">", right="</span> + right +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/20/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="ckd5l921g0005bcq7cnn9bpds" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-剑指offer2-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/19/%E5%89%91%E6%8C%87offer2-3/" class="article-date">
-  <time datetime="2020-07-19T09:31:18.000Z" itemprop="datePublished">2020-07-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/19/%E5%89%91%E6%8C%87offer2-3/">剑指offer2,3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="剑指offer-2替换空格"><a href="#剑指offer-2替换空格" class="headerlink" title="剑指offer 2替换空格"></a>剑指offer 2替换空格</h2><p>实现一个函数，将一个字符串中的每一个空格替换成“%20”；例，当字符串为“We Are Happy”,则经过替换之后的字符串为“We%20Are%20Happy”</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将字符串的每个空格替换成 %20 例：将“We Are Happy”替换成“We%20Are%20Happy”</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String stringBuffer = replaceTest(<span class="keyword">new</span> StringBuffer(<span class="string">"We Are Happy"</span>));</span><br><span class="line">        System.out.println(stringBuffer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">replaceTest</span><span class="params">(StringBuffer s)</span></span>&#123;</span><br><span class="line">        <span class="comment">//直接使用字符串的repla方法</span></span><br><span class="line">        <span class="comment">//return s.toString.replace(" ","%20");</span></span><br><span class="line">        StringBuffer buffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="comment">//将StringBuffer转化为字符串在转化为字符数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s.toString().toCharArray())&#123;</span><br><span class="line">            <span class="comment">//如果字符为空就追加“%20”</span></span><br><span class="line">            <span class="keyword">if</span> (c==<span class="string">' '</span>)&#123;</span><br><span class="line">                buffer.append(<span class="string">"%20"</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                buffer.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> buffer.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="剑指offer-3-从尾到头打印链表"><a href="#剑指offer-3-从尾到头打印链表" class="headerlink" title="剑指offer 3 从尾到头打印链表"></a>剑指offer 3 从尾到头打印链表</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> ArrayList&lt;Integer&gt; arr = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ListNode l1 = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">        ListNode l2 = <span class="keyword">new</span> ListNode(<span class="number">2</span>);</span><br><span class="line">        ListNode l3 = <span class="keyword">new</span> ListNode(<span class="number">3</span>);</span><br><span class="line">        ListNode l4 = <span class="keyword">new</span> ListNode(<span class="number">4</span>);</span><br><span class="line">        ListNode l5 = <span class="keyword">new</span> ListNode(<span class="number">5</span>);</span><br><span class="line">        ListNode l6 = <span class="keyword">new</span> ListNode(<span class="number">6</span>);</span><br><span class="line">        l1.next = l2;</span><br><span class="line">        l2.next = l3;</span><br><span class="line">        l3.next = l4;</span><br><span class="line">        l4.next = l5;</span><br><span class="line">        l5.next = l6;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = print2(l1);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归实现</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Integer&gt; <span class="title">print</span><span class="params">(ListNode listNode)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(listNode == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (listNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            print(listNode.next);</span><br><span class="line">        &#125;</span><br><span class="line">        arr.add(listNode.val);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用ArrayList的add(index,value)方法，每次都将获取到的值存放在index=0的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>   ArrayList&lt;Integer&gt; <span class="title">print1</span><span class="params">(ListNode listNode)</span></span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; arr = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">if</span> (listNode==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (listNode!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            arr.add(<span class="number">0</span>,listNode.val);</span><br><span class="line">            listNode = listNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//利用栈的性质，</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Integer&gt; <span class="title">print2</span><span class="params">(ListNode listNode)</span></span>&#123;</span><br><span class="line">        Stack stack = <span class="keyword">new</span> Stack();</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (listNode!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(listNode);</span><br><span class="line">            listNode=listNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            ListNode pop = (ListNode) stack.pop();</span><br><span class="line">            list.add(pop.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next =<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/19/%E5%89%91%E6%8C%87offer2-3/" data-id="ckd5l921f0004bcq70bvpaw96" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-复习java基础知识（四）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/18/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E5%9B%9B%EF%BC%89/" class="article-date">
-  <time datetime="2020-07-18T13:32:26.000Z" itemprop="datePublished">2020-07-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E5%9B%9B%EF%BC%89/">复习java基础知识（四）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每天学习一道《剑指offer》的题目<br>剑指offer第一道题：</p>
-<p>在一个二维数组中（每一个数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序，请完成一个函数，输入这样的一个二维数组和一个证书，判断数组中是否有该整数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//上下左右有序的二维数组中查找数</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Offer1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] a = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">2</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">9</span>&#125;,&#123;<span class="number">3</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">10</span>&#125;,&#123;<span class="number">10</span>,<span class="number">23</span>,<span class="number">45</span>,<span class="number">66</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">boolean</span> b = search(<span class="number">66</span>, a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> target ,<span class="keyword">int</span>[][] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lines = a.length;</span><br><span class="line">        <span class="keyword">int</span> cols = a[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> y = cols -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//x,y不越界</span></span><br><span class="line">        <span class="keyword">while</span> (x&lt;lines&amp;&amp;y&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//如果左上角的值小于目标值就x++</span></span><br><span class="line">            <span class="keyword">if</span> (a[x][y]&lt;target)&#123;</span><br><span class="line">                x++;</span><br><span class="line">                <span class="comment">//如果左上角的值小于目标值就x++</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[x][y]&gt;target)&#123;</span><br><span class="line">                y--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//否则就等于</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="线程的基本方法"><a href="#线程的基本方法" class="headerlink" title="线程的基本方法"></a>线程的基本方法</h2><p>线程相关的基本方法有 wait，notify，notifyAll，sleep，join，yield 等。</p>
-<h3 id="线程等待（wait）"><a href="#线程等待（wait）" class="headerlink" title="线程等待（wait）"></a>线程等待（wait）</h3><p>调用该方法的线程进入 WAITING 状态，只有等待另外线程的通知或被中断才会返回，需要注意的是调用 wait()方法后，会释放对象的锁。因此，wait 方法一般用在同步方法或同步代码块中。</p>
-<h3 id="线程睡眠（sleep）"><a href="#线程睡眠（sleep）" class="headerlink" title="线程睡眠（sleep）"></a>线程睡眠（sleep）</h3><p>sleep 导致当前线程休眠，与 wait 方法不同的是 sleep 不会释放当前占有的锁,sleep(long)会导致线程进入 TIMED-WATING 状态，而 wait()方法会导致当前线程进入 WATING 状态</p>
-<h3 id="线程让步（yield）"><a href="#线程让步（yield）" class="headerlink" title="线程让步（yield）"></a>线程让步（yield）</h3><p>yield 会使当前线程让出 CPU 执行时间片，与其他线程一起重新竞争 CPU 时间片。一般情况下，优先级高的线程有更大的可能性成功竞争得到 CPU 时间片，但这又不是绝对的，有的操作系统对线程优先级并不敏感</p>
-<h3 id="Join-等待其他线程终止"><a href="#Join-等待其他线程终止" class="headerlink" title="Join 等待其他线程终止"></a>Join 等待其他线程终止</h3><p>join() 方法，等待其他线程终止，在当前线程中调用一个线程的 join() 方法，则当前线程转为阻塞状态，回到另一个线程结束，当前线程再由阻塞状态变为就绪状态，等待 cpu 的宠幸。</p>
-<h3 id="线程唤醒（notify）"><a href="#线程唤醒（notify）" class="headerlink" title="线程唤醒（notify）"></a>线程唤醒（notify）</h3><p>Object 类中的 notify() 方法，唤醒在此对象监视器上等待的单个线程，如果所有线程都在此对象上等待，则会选择唤醒其中一个线程，选择是任意的，并在对实现做出决定时发生，线程通过调用其中一个 wait() 方法，在对象的监视器上等待，直到当前的线程放弃此对象上的锁定，才能继续执行被唤醒的线程，被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争。</p>
-<h2 id="线程共享数据卖票问题"><a href="#线程共享数据卖票问题" class="headerlink" title="线程共享数据卖票问题"></a>线程共享数据卖票问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.Lock;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread1 t1 = <span class="keyword">new</span> Thread1();</span><br><span class="line">        <span class="keyword">new</span> Thread(t1,<span class="string">"A"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(t1,<span class="string">"B"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> chePiao = <span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>    <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (chePiao&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">"窗口卖出一张票"</span>+<span class="string">"余票"</span>+--chePiao);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                lock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">生产者与消费者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestConsumeAndProductor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Clerk clerk = <span class="keyword">new</span> Clerk();</span><br><span class="line">        Product product = <span class="keyword">new</span> Product(clerk);</span><br><span class="line">        Consume consume = <span class="keyword">new</span> Consume(clerk);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(product,<span class="string">"生产者A"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(consume,<span class="string">"消费者B"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(product,<span class="string">"生产者C"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(consume,<span class="string">"消费者D"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//店员</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clerk</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> product=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    Condition condition = lock.newCondition();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进货</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (product&gt;=<span class="number">1</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">"货已满"</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    condition.await();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"已进货货物,还剩"</span>+ ++product);</span><br><span class="line">            condition.signalAll();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//卖货</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">sale</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (product&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">"货已空"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    condition.await();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"卖出货物，还剩"</span>+ --product);</span><br><span class="line">            condition.signalAll();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//生产者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Clerk clerk ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Product</span><span class="params">(Clerk clerk)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.clerk = clerk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">20</span> ; i++) &#123;</span><br><span class="line">            clerk.get();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//消费者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consume</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Clerk clerk;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Consume</span><span class="params">(Clerk clerk)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.clerk = clerk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">20</span> ; i++) &#123;</span><br><span class="line">            clerk.sale();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="CountDownLatch（线程计数器-）"><a href="#CountDownLatch（线程计数器-）" class="headerlink" title="CountDownLatch（线程计数器 ）"></a>CountDownLatch（线程计数器 ）</h3><p>CountDownLatch 类位于 java.util.concurrent 包下，利用它可以实现类似计数器的功能。比如有一个任务 A，它要等待其他 4 个任务执行完毕之后才能执行，此时就可以利用 CountDownLatch<br>来实现这种功能了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用CountDownLatch来计算5个线程的执行所消耗的时间</span></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">5</span>);</span><br><span class="line">        Test test = <span class="keyword">new</span> Test(latch);</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span> ; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(test).start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            latch.await();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"耗时毫秒:"</span>+(end-start)+<span class="string">"mm"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    CountDownLatch latch ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(CountDownLatch latch)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.latch = latch;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10000</span> ; i++) &#123;</span><br><span class="line">                    System.out.println(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                latch.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="内存可见性问题"><a href="#内存可见性问题" class="headerlink" title="内存可见性问题"></a>内存可见性问题</h2><blockquote>
-<p>Java内存模型规定，对于多个线程共享的变量，存储在主内存当中，每个线程都有自己独立的工作内存，并且线程只能访问自己的工作内存，不可以访问其它线程的工作内存。工作内存中保存了主内存中共享变量的副本，线程要操作这些共享变量，只能通过操作工作内存中的副本来实现，操作完毕之后再同步回到主内存当中<br>———————————————— 版权声明：本文为CSDN博主「yZzc_XQ」的原创文章，遵循CC 4.0<br>BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43262571/article/details/106572506" target="_blank" rel="noopener">https://blog.csdn.net/qq_43262571/article/details/106572506</a></p>
-<p><strong>内存可见性</strong>：（Memory Visibility）是指当某个线程正在使用对象状态，而另一个线程在同时修改该状态，需要确保当一个线程修改了对象状态后，其他线程能够看到发生的状态变化</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestVolatile</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            ThreadDemo td = <span class="keyword">new</span> ThreadDemo();</span><br><span class="line">            <span class="keyword">new</span> Thread(td).start();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(td.isFlag())&#123;</span><br><span class="line">                    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">volatile</span>   <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"flag="</span> + isFlag());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFlag</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFlag</span><span class="params">(<span class="keyword">boolean</span> flag)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.flag = flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//flag=true</span></span><br></pre></td></tr></table></figure>
-<p><strong>volatile的特点</strong><br>1.保证了变量的内存可见性问题<br>2.不保证原子性问题<br>3.局部阻止了内存指令重排</p>
-<blockquote>
-<p>//如果设置为     private volatile boolean flag = false; </p>
-<h2 id="输出结果：-flag-true"><a href="#输出结果：-flag-true" class="headerlink" title="//输出结果： flag=true"></a>//输出结果： flag=true</h2></blockquote>
-<h2 id="原子变量"><a href="#原子变量" class="headerlink" title="原子变量"></a>原子变量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAtomicDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		AtomicDemo ad = <span class="keyword">new</span> AtomicDemo();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">new</span> Thread(ad).start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AtomicDemo</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"><span class="comment">//	private volatile int serialNumber = 0;</span></span><br><span class="line">	<span class="keyword">private</span> AtomicInteger serialNumber = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Thread.sleep(<span class="number">200</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(getSerialNumber()+<span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSerialNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> serialNumber.getAndIncrement();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//运行结果</span></span><br><span class="line"><span class="comment">//1 3 2 0 4 6 5 7 8 9 ——&gt; 不会重复</span></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「yZzc_XQ」的原创文章，遵循CC <span class="number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/qq_43262571/article/details/106572506</span></span><br></pre></td></tr></table></figure>
-<p>利用AtomicInteger可以保证原子性问题，底层使用的时CAS算法</p>
-<h2 id="CAS算法"><a href="#CAS算法" class="headerlink" title="CAS算法"></a>CAS算法</h2><p>Compare And Swap (Compare And Exchange) / 自旋 / 自旋锁 / 无锁</p>
-<p>CAS 是一种硬件对并发的支持，针对多处理器操作而设计的处理器中的一种特殊指令，用于管理对共享数据的并发访问。</p>
-<p>CAS 是一种无锁的非阻塞算法的实现。</p>
-<p>CAS 包含了 3 个操作数：</p>
-<p>需要读写的内存值 V<br>进行比较的值 A<br>拟写入的新值 B<br>当且仅当 V 的值等于 A 时，CAS 通过原子方式用新值 B 来更新 V的值，否则不会执行任何操作<br>————————————————<br>版权声明：本文为CSDN博主「yZzc_XQ」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43262571/article/details/106572506" target="_blank" rel="noopener">https://blog.csdn.net/qq_43262571/article/details/106572506</a><br><strong>CAS算法也会引起ABA问题</strong><br>比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行 CAS 操作发现内存中仍然是 A，然后 one 操作成功。尽管线程 one 的 CAS 操作成功，但是不代表这个过程就是没有问题的。我们一班使用加版本号的方式解决ABA问题</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zzz-blog.github.io/2020/07/18/%E5%A4%8D%E4%B9%A0java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E5%9B%9B%EF%BC%89/" data-id="ckd5l921n000ebcq7e1um7hea" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/07/27/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">JVM学习之垃圾回收器</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/26/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">垃圾回收相关概念</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/25/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">JVM学习之字符串常量池和垃圾收集算法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/24/JVM%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E5%85%83%E7%A9%BA%E9%97%B4%EF%BC%89/">JVM学习之方法区（元空间）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/JVM%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%86%EF%BC%88heap%EF%BC%89/">JVM学习第二天堆（heap）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 zzz<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
 
+    
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    
 
+    
 
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
+
 </html>
