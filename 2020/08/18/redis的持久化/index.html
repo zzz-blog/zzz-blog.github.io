@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="spring工厂和bean生命周期, Hexo">
+    <meta name="keywords" content="redis的持久化, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>spring工厂和bean生命周期 | Hexo</title>
+    <title>redis的持久化 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">spring工厂和bean生命周期</h1>
+                    <h1 class="description center-align post-title">redis的持久化</h1>
                 </div>
             </div>
         </div>
@@ -379,7 +379,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-17
+                    2020-08-18
                 </div>
                 
 
@@ -395,108 +395,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="spring工厂创建对象"><a href="#spring工厂创建对象" class="headerlink" title="spring工厂创建对象"></a>spring工厂创建对象</h2><p><strong>创建简单对象</strong><br>可以直接通过new构造方法创建对象，比如UserDao、UserService<br><strong>创建复杂对象</strong><br>值得是不通过直接的new的方式创建对象。比如Connection、SqlSessionFactory。</p>
-<h2 id="spring创建复杂对象"><a href="#spring创建复杂对象" class="headerlink" title="spring创建复杂对象"></a>spring创建复杂对象</h2><ul>
-<li>实现FactoryBean接口，重写其中的三个方法</li>
+                <p>Redis官方提供了两种持久化的方式来将数据存储到硬盘上<br><strong>快照（Snapshot）</strong>：保存这一时刻的数据状态<br><strong>AOF（Append only File）</strong>：之追加日志文件，将所有的redis写命令记录到日志文件中。</p>
+<h2 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h2><ul>
+<li>这种方式可以将某一时刻的所有数据写到的硬盘上，当然也是redis默认开启的一种方式，因为生成的文件是.rdb文件，所以又可以叫做rdb方式。</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyFactory</span> <span class="token keyword">implements</span> <span class="token class-name">FactoryBean</span> <span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//用于书写创建复杂对象的方法，并返回</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Object <span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
-        Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Connection connection <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token string">"jdbc:mysql://localhost:3306/zwq"</span><span class="token punctuation">,</span> <span class="token string">"root"</span><span class="token punctuation">,</span> <span class="token string">"409409zwq"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//返回创建对象的类型</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> <span class="token function">getObjectType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> Connection<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//返回true只创建一个对象</span>
-<span class="token comment" spellcheck="true">//返回false每次获取对象都新创建一个</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>配置xml文件</p>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"conn"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.zwq.factorybean.MyFactory"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span></code></pre>
-<p><strong>注意</strong>每次获取的对象波昂不是MyFactoy对象，而是Connetion对象</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        ApplicationContext cxt <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">"ApplicationContext.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Connection conn <span class="token operator">=</span> <span class="token punctuation">(</span>Connection<span class="token punctuation">)</span> cxt<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"conn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<p>结果：<br><img src="https://img-blog.csdnimg.cn/20200816121254559.png#pic_center" alt="在这里插入图片描述"></p>
-<p>如果想要获取MyFactory对象应该书写<br>cxt.getBean(“&amp;conn”)</p>
-<p>在进获取Connection对象时，我们可以把填写的参数写到配置文件中，做到解耦合。方便修改</p>
-<ol>
-<li>再MyFactory类中定义四个成员变量driverClassName、url、username、password，并提供getter、setter方法</li>
-<li>将四个成员变量写到相应的位置中。</li>
-<li>再xml中进行属性配置的方法赋值。</li>
-</ol>
-<pre class=" language-java"><code class="language-java">     <span class="token keyword">private</span> String driveClassName<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String url<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String username<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String password<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Override</span>
-     <span class="token keyword">public</span> Object <span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
-        Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>driveClassName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Connection connection <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<h3 id="springFactory实现原理"><a href="#springFactory实现原理" class="headerlink" title="springFactory实现原理"></a>springFactory实现原理</h3><ol>
-<li>首先会根据配置文件找到id=“conn”的全部配置信息</li>
-<li>再利用instanceof（FactoryBean）判断类是否是其实现类。</li>
-<li>如果是就根据实现的getObject（）方法返回Connection方法</li>
-<li>如果不是就直接new对象返回。<h2 id="实例工厂创建复杂对象"><a href="#实例工厂创建复杂对象" class="headerlink" title="实例工厂创建复杂对象"></a>实例工厂创建复杂对象</h2></li>
-</ol>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConnFactory</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> Connection <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> SQLException <span class="token punctuation">{</span>
-        Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Connection connection <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token string">"jdbc:mysql://localhost:3306/zwq"</span><span class="token punctuation">,</span><span class="token string">"root"</span><span class="token punctuation">,</span><span class="token string">"409409zwq"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"connFactory"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.zwq.factorybean.ConnFactory"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
-
-    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"conn"</span> factory<span class="token operator">-</span>bean<span class="token operator">=</span><span class="token string">"connFactory"</span> factory<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"getConnection"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span></code></pre>
-<h2 id="静态工厂创建复杂对象"><a href="#静态工厂创建复杂对象" class="headerlink" title="静态工厂创建复杂对象"></a>静态工厂创建复杂对象</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StaticConnFactory</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Connection <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> SQLException <span class="token punctuation">{</span>
-        Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Connection connection <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token string">"jdbc:mysql://localhost/zwq"</span><span class="token punctuation">,</span> <span class="token string">"root"</span><span class="token punctuation">,</span> <span class="token string">"409409zwq"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-java"><code class="language-java">    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"conn"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.zwq.factorybean.StaticConnFactory"</span> factory<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"getConnection"</span><span class="token operator">/</span><span class="token operator">></span></code></pre>
-<h2 id="spring中bean对象的生命周期"><a href="#spring中bean对象的生命周期" class="headerlink" title="spring中bean对象的生命周期"></a>spring中bean对象的生命周期</h2><p><img src="https://img-blog.csdnimg.cn/20200816180259956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<ol>
-<li><p>对象的是实例化</p>
-</li>
-<li><p>对象的属性赋值</p>
-</li>
-<li><p>如果这个Bean实现了BeanNameAware接口，会调用它实现的setBeanName(String beanId)方法，此处传递的是Spring配置文件中Bean的ID</p>
-</li>
-<li><p>如果这个Bean实现了BeanFactoryAware接口，会调用它实现的setBeanFactory()，传递的是Spring工厂本身（可以用这个方法获取到其他Bean）</p>
-</li>
-<li><p>如果这个Bean实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文，该方式同样可以实现步骤4，但比4更好，以为ApplicationContext是BeanFactory的子接口，有更多的实现方法</p>
-</li>
-<li><p>如果实现了BeanPostProcessor方法，重写了postProcessBeforeInitialization，执行方法对bean进行加工</p>
-</li>
-<li><p>对象的初始化</p>
-<p>spring工厂再创建完对象后，条用对象的初始化方法，完成对应的初始化操作。<br> <strong>InitializingBean接口</strong></p>
-<p>实现afterProperitesSet方法，根据需求再里面写代码</p>
-<p>配置bean，写普通方法<br>为对象提供普通方法，再bean中init-method=“方法名”</p>
-</li>
-<li><p>如果实现了BeanPostProcessor方法，重写了postProcessBeforeInitialization，执行方法对bean进行加工</p>
-</li>
-<li><p>对象的销毁，当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean接口，会调用其实现的destroy方法，如果再bean配置中有destro-method就会执行指定的方法。</p>
-</li>
-</ol>
-<p><strong>注意</strong>：如果spring的ioc容器为spring工厂管理，去掉第五步即可。 </p>
-<h2 id="BeanFactory和FactoryBean"><a href="#BeanFactory和FactoryBean" class="headerlink" title="BeanFactory和FactoryBean"></a>BeanFactory和FactoryBean</h2><p><strong>BeanFactory</strong>：是一个接口，从名字可以看出，它就是一个对象工厂类，所有的bean都是交由beanFactroy进行管理的。<br><strong>FactoryBean</strong>：是一个接口，用来创建复杂对象的，实现其中的三个方法可以配置bean对象。请看文章开头.</p>
+<p><strong>快照的生成方式</strong><br>1.客户端方式生成：BGSAVE和SAVE<br><strong>BGSAVE</strong>：客户端可以使用这个命令来创建一个快照，放接受客户端BGSAVE时，redis会使用fork来创建一个子线程，子线程用来生成这一时刻的快照写入磁盘中，主线程也还可以接受请求处理请求。</p>
+<p><strong>SAVE</strong>：在接受SAVE命令时，客户端不会再出口i请求，而是等生成rdb文件时才会处理请求，会造成redis阻塞。</p>
+<h2 id="aof持久化"><a href="#aof持久化" class="headerlink" title="aof持久化"></a>aof持久化</h2><p><strong>1.特点</strong><br>这种方式可以将所有的客户端的命令记录代日志文件中，AOF之旧话会被执行的写命令写到AOF文件中，所以只要从头到尾执行一次AOF文件就可以恢复所有的数据<br><strong>2.AOF持久化的开启</strong><br>再redis的默认设置中，并没有开启AOF持久化，<br><img src="https://img-blog.csdnimg.cn/20200818141603482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>3.日志的追加频率</strong></p>
+<ul>
+<li>alway（谨慎使用）：每个redis写命令都会被写入硬盘中，从而将发生系统崩溃时出现的数据丢失减少到最少，但是对系统硬盘进行大量的操作，所以redis处理命令的速度收到限制。</li>
+<li>everysec（推荐）：没秒执行一次同步显示的将多个命令同步到硬盘中。</li>
+<li>no（不推荐）：由操作系统决定何时同步。</li>
+</ul>
+<p><strong>4.AOF带来的问题</strong><br>持久化的文件越来越大，我们条用incr test100次，文件就会保存100次，其中99次多是多余的，为了压缩aof的持久化文件，redis提供了AOF文件重写的操作</p>
+<blockquote>
+<p>执行BGREWRITEAOF    不会阻塞redis服务<br><img src="https://img-blog.csdnimg.cn/20200818142504820.png#pic_center" alt="在这里插入图片描述"><br>当地一次的AOF文件到达64M时，就会紫红触发一次重写机制，当重写之后的文件达到文件大小的两倍时，会再次触发重写机制。<br><strong>5，重写机制</strong><br>AOF的重写机制并不是读取旧的AOF文件，而是用新的文件去替代，<br><img src="https://img-blog.csdnimg.cn/20200818142800433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<ul>
+<li>. redis调用fork ，现在有父子两个进程 子进程根据内存中的数据库快照，往临时文件中写入重建数据库状态的命令</li>
+<li>. 父进程继续处理client请求，除了把写命令写入到原来的aof文件中。同时把收到的写命令缓存起来。这样就能保证如果子进程重写失败的话并不会出问题。</li>
+<li>. 当子进程把快照内容写入已命令方式写到临时文件中后，子进程发信号通知父进程。然后父进程把缓存的写命令也写入到临时文件。</li>
+<li>现在父进程可以使用临时文件替换老的aof文件，并重命名，后面收到的写命令也开始往新的aof文件中追加。</li>
+</ul>
 
             </div>
             <hr/>
@@ -522,7 +442,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zzz-blog.github.io/2020/08/17/spring%E5%B7%A5%E5%8E%82%E5%92%8Cbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">https://zzz-blog.github.io/2020/08/17/spring%E5%B7%A5%E5%8E%82%E5%92%8Cbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</a>
+                    <a href="https://zzz-blog.github.io/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">https://zzz-blog.github.io/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -599,9 +519,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">
                     <div class="card-image">
@@ -621,9 +542,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -632,6 +553,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -642,24 +564,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/15/python%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                <a href="/2020/08/17/spring%E5%B7%A5%E5%8E%82%E5%92%8Cbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="python中的几种数据类型">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="spring工厂和bean生命周期">
                         
-                        <span class="card-title">python中的几种数据类型</span>
+                        <span class="card-title">spring工厂和bean生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指Offer 24给定一个二叉树和一个目标和，判断该是否存在树的根节点到叶子节点的路径，这条路经上的所有经过的节点和等于目标和思路：用递归的思想，深度优先的思想，先判断经过节点的所有左子节点的和，在判断右子节点，如下图先经过，2，4，11
+                            spring工厂创建对象创建简单对象可以直接通过new构造方法创建对象，比如UserDao、UserService创建复杂对象值得是不通过直接的new的方式创建对象。比如Connection、SqlSessionFactory。
+sprin
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-17
                             </span>
                         <span class="publish-author">
                             
