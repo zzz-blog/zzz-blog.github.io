@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="redis的持久化, Hexo">
+    <meta name="keywords" content="calss常量池、常量池、运行时常量池和字符串常量池, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>redis的持久化 | Hexo</title>
+    <title>calss常量池、常量池、运行时常量池和字符串常量池 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis的持久化</h1>
+                    <h1 class="description center-align post-title">calss常量池、常量池、运行时常量池和字符串常量池</h1>
                 </div>
             </div>
         </div>
@@ -379,7 +379,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-18
+                    2020-08-21
                 </div>
                 
 
@@ -395,28 +395,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Redis官方提供了两种持久化的方式来将数据存储到硬盘上<br><strong>快照（Snapshot）</strong>：保存这一时刻的数据状态<br><strong>AOF（Append only File）</strong>：之追加日志文件，将所有的redis写命令记录到日志文件中。</p>
-<h2 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h2><ul>
-<li>这种方式可以将某一时刻的所有数据写到的硬盘上，当然也是redis默认开启的一种方式，因为生成的文件是.rdb文件，所以又可以叫做rdb方式。</li>
-</ul>
-<p><strong>快照的生成方式</strong><br>1.客户端方式生成：BGSAVE和SAVE<br><strong>BGSAVE</strong>：客户端可以使用这个命令来创建一个快照，放接受客户端BGSAVE时，redis会使用fork来创建一个子线程，子线程用来生成这一时刻的快照写入磁盘中，主线程也还可以接受请求处理请求。</p>
-<p><strong>SAVE</strong>：在接受SAVE命令时，客户端不会再出口i请求，而是等生成rdb文件时才会处理请求，会造成redis阻塞。</p>
-<h2 id="aof持久化"><a href="#aof持久化" class="headerlink" title="aof持久化"></a>aof持久化</h2><p><strong>1.特点</strong><br>这种方式可以将所有的客户端的命令记录代日志文件中，AOF之旧话会被执行的写命令写到AOF文件中，所以只要从头到尾执行一次AOF文件就可以恢复所有的数据<br><strong>2.AOF持久化的开启</strong><br>再redis的默认设置中，并没有开启AOF持久化，<br><img src="https://img-blog.csdnimg.cn/20200818141603482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>3.日志的追加频率</strong></p>
-<ul>
-<li>alway（谨慎使用）：每个redis写命令都会被写入硬盘中，从而将发生系统崩溃时出现的数据丢失减少到最少，但是对系统硬盘进行大量的操作，所以redis处理命令的速度收到限制。</li>
-<li>everysec（推荐）：没秒执行一次同步显示的将多个命令同步到硬盘中。</li>
-<li>no（不推荐）：由操作系统决定何时同步。</li>
-</ul>
-<p><strong>4.AOF带来的问题</strong><br>持久化的文件越来越大，我们条用incr test100次，文件就会保存100次，其中99次多是多余的，为了压缩aof的持久化文件，redis提供了AOF文件重写的操作</p>
-<blockquote>
-<p>执行BGREWRITEAOF    不会阻塞redis服务<br><img src="https://img-blog.csdnimg.cn/20200818142504820.png#pic_center" alt="在这里插入图片描述"><br>当地一次的AOF文件到达64M时，就会紫红触发一次重写机制，当重写之后的文件达到文件大小的两倍时，会再次触发重写机制。<br><strong>5，重写机制</strong><br>AOF的重写机制并不是读取旧的AOF文件，而是用新的文件去替代，<br><img src="https://img-blog.csdnimg.cn/20200818142800433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<ul>
-<li>. redis调用fork ，现在有父子两个进程 子进程根据内存中的数据库快照，往临时文件中写入重建数据库状态的命令</li>
-<li>. 父进程继续处理client请求，除了把写命令写入到原来的aof文件中。同时把收到的写命令缓存起来。这样就能保证如果子进程重写失败的话并不会出问题。</li>
-<li>. 当子进程把快照内容写入已命令方式写到临时文件中后，子进程发信号通知父进程。然后父进程把缓存的写命令也写入到临时文件。</li>
-<li>现在父进程可以使用临时文件替换老的aof文件，并重命名，后面收到的写命令也开始往新的aof文件中追加。</li>
-</ul>
+                <p>最近在看jvm，发现了好多常量池，搞不清区别，查看了好多篇博客，简单总结一下。</p>
+<h2 id="Class常量池"><a href="#Class常量池" class="headerlink" title="Class常量池"></a>Class常量池</h2><p>我们写的每一个Java类被编译后，就会形成一份class文件；class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常量池(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用。</p>
+<h2 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h2><p>常量池是Class常量池中的一部分，可以看作是一张表、虚拟机指令根据这张表找到吆执行的类名、方法名、参数类型、字面量等类型。</p>
+<h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h2><p>Class常量池加载到类中就是运行时常量池，所以运行时常量池是每个类一份。</p>
+<h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>在HotSpot VM里实现的string pool功能的是一个StringTable类，它是一个Hash表，默认值大小长度是1009；这个StringTable在每个HotSpot VM的实例只有一份，被所有的类共享。字符串常量由一个一个字符组成，放在了StringTable上</p>
 
             </div>
             <hr/>
@@ -442,7 +425,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zzz-blog.github.io/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">https://zzz-blog.github.io/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</a>
+                    <a href="https://zzz-blog.github.io/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">https://zzz-blog.github.io/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -519,9 +502,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">
                     <div class="card-image">
@@ -540,9 +524,9 @@ Class常量池我们写的每一个Java类被编译后，就会形成一份class
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -551,6 +535,7 @@ Class常量池我们写的每一个Java类被编译后，就会形成一份class
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -561,25 +546,26 @@ Class常量池我们写的每一个Java类被编译后，就会形成一份class
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/17/spring%E5%B7%A5%E5%8E%82%E5%92%8Cbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                <a href="/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="spring工厂和bean生命周期">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis的持久化">
                         
-                        <span class="card-title">spring工厂和bean生命周期</span>
+                        <span class="card-title">redis的持久化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            spring工厂创建对象创建简单对象可以直接通过new构造方法创建对象，比如UserDao、UserService创建复杂对象值得是不通过直接的new的方式创建对象。比如Connection、SqlSessionFactory。
-sprin
+                            Redis官方提供了两种持久化的方式来将数据存储到硬盘上快照（Snapshot）：保存这一时刻的数据状态AOF（Append only File）：之追加日志文件，将所有的redis写命令记录到日志文件中。
+快照持久化
+这种方式可以将某一时
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
                             </span>
                         <span class="publish-author">
                             
