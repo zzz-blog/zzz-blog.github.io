@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="calss常量池、常量池、运行时常量池和字符串常量池, Hexo">
+    <meta name="keywords" content="linux中安装tomcat, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>calss常量池、常量池、运行时常量池和字符串常量池 | Hexo</title>
+    <title>linux中安装tomcat | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">calss常量池、常量池、运行时常量池和字符串常量池</h1>
+                    <h1 class="description center-align post-title">linux中安装tomcat</h1>
                 </div>
             </div>
         </div>
@@ -379,7 +379,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-21
+                    2020-09-10
                 </div>
                 
 
@@ -395,11 +395,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>最近在看jvm，发现了好多常量池，搞不清区别，查看了好多篇博客，简单总结一下。</p>
-<h2 id="Class常量池"><a href="#Class常量池" class="headerlink" title="Class常量池"></a>Class常量池</h2><p>我们写的每一个Java类被编译后，就会形成一份class文件；class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常量池(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用。</p>
-<h2 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h2><p>常量池是Class常量池中的一部分，可以看作是一张表、虚拟机指令根据这张表找到吆执行的类名、方法名、参数类型、字面量等类型。</p>
-<h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h2><p>Class常量池加载到类中就是运行时常量池，所以运行时常量池是每个类一份。</p>
-<h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>在HotSpot VM里实现的string pool功能的是一个StringTable类，它是一个Hash表，默认值大小长度是1009；这个StringTable在每个HotSpot VM的实例只有一份，被所有的类共享。字符串常量由一个一个字符组成，放在了StringTable上</p>
+                <h2 id="linux部署tomcat"><a href="#linux部署tomcat" class="headerlink" title="linux部署tomcat"></a>linux部署tomcat</h2><blockquote>
+<p>安装tomcat前需要有java的环境变量</p>
+</blockquote>
+<ol>
+<li>安装tomcat<br><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz
+</a></li>
+<li>将tomcat上传到linux中</li>
+<li>使用<strong>tar -zxvf</strong> 解压缩</li>
+<li>在tomcat中的bin目录中找到startup.sh，输入命令<strong>./startup.sh</strong>命令，启动tomcat。</li>
+<li>使用<strong>jps</strong>命令可以查看有关java的进程。tomcat的进程号为boostrap。</li>
+<li>进入tomcat的logs目录中使用<strong>tail -f catalina.out</strong> 命令实时查看控制台信息</li>
+<li>在tomcat的bin目录下面使用 ./shutdown.sh</li>
+</ol>
 
             </div>
             <hr/>
@@ -425,7 +433,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zzz-blog.github.io/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">https://zzz-blog.github.io/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/</a>
+                    <a href="https://zzz-blog.github.io/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/">https://zzz-blog.github.io/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -502,9 +510,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/">
                     <div class="card-image">
@@ -526,9 +535,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -537,6 +546,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -547,26 +557,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/18/redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">
+                <a href="/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis的持久化">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="calss常量池、常量池、运行时常量池和字符串常量池">
                         
-                        <span class="card-title">redis的持久化</span>
+                        <span class="card-title">calss常量池、常量池、运行时常量池和字符串常量池</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Redis官方提供了两种持久化的方式来将数据存储到硬盘上快照（Snapshot）：保存这一时刻的数据状态AOF（Append only File）：之追加日志文件，将所有的redis写命令记录到日志文件中。
-快照持久化
-这种方式可以将某一时
+                            最近在看jvm，发现了好多常量池，搞不清区别，查看了好多篇博客，简单总结一下。
+Class常量池我们写的每一个Java类被编译后，就会形成一份class文件；class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-21
                             </span>
                         <span class="publish-author">
                             
