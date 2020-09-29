@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux中安装tomcat, Hexo">
+    <meta name="keywords" content="在linux环境下安装activemq后，在window中打不开客户端, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux中安装tomcat | Hexo</title>
+    <title>在linux环境下安装activemq后，在window中打不开客户端 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux中安装tomcat</h1>
+                    <h1 class="description center-align post-title">在linux环境下安装activemq后，在window中打不开客户端</h1>
                 </div>
             </div>
         </div>
@@ -379,7 +379,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-10
+                    2020-09-29
                 </div>
                 
 
@@ -395,19 +395,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="linux部署tomcat"><a href="#linux部署tomcat" class="headerlink" title="linux部署tomcat"></a>linux部署tomcat</h2><blockquote>
-<p>安装tomcat前需要有java的环境变量</p>
-</blockquote>
-<ol>
-<li>安装tomcat<br><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz
-</a></li>
-<li>将tomcat上传到linux中</li>
-<li>使用<strong>tar -zxvf</strong> 解压缩</li>
-<li>在tomcat中的bin目录中找到startup.sh，输入命令<strong>./startup.sh</strong>命令，启动tomcat。</li>
-<li>使用<strong>jps</strong>命令可以查看有关java的进程。tomcat的进程号为boostrap。</li>
-<li>进入tomcat的logs目录中使用<strong>tail -f catalina.out</strong> 命令实时查看控制台信息</li>
-<li>在tomcat的bin目录下面使用 ./shutdown.sh</li>
-</ol>
+                <p>今天在安装activemq时，发现在Linux中打不开客户端</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929201404563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>我检查了下我的linux中的防火墙有没有关</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929201505242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>发现防火墙已经关掉了，然后我有用ping命令ping window系统，也能ping通，windows也能ping通linux</p>
+<p>最后我发现在active.log文件下</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929201855622.png#pic_center" alt="在这里插入图片描述"><br>这只有本地集器才能访问，所以把con/jetty.xml文件中的1127.0.0.1修改下成自己的ip就行了</p>
+<p><img src="https://img-blog.csdnimg.cn/20200929202021881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6el9raW5n,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 
             </div>
             <hr/>
@@ -433,7 +426,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zzz-blog.github.io/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/">https://zzz-blog.github.io/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/</a>
+                    <a href="https://zzz-blog.github.io/2020/09/29/%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85activemq%E5%90%8E%EF%BC%8C%E5%9C%A8window%E4%B8%AD%E6%89%93%E4%B8%8D%E5%BC%80%E5%AE%A2%E6%88%B7%E7%AB%AF/">https://zzz-blog.github.io/2020/09/29/%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85activemq%E5%90%8E%EF%BC%8C%E5%9C%A8window%E4%B8%AD%E6%89%93%E4%B8%8D%E5%BC%80%E5%AE%A2%E6%88%B7%E7%AB%AF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -510,9 +503,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/29/%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85activemq%E5%90%8E%EF%BC%8C%E5%9C%A8window%E4%B8%AD%E6%89%93%E4%B8%8D%E5%BC%80%E5%AE%A2%E6%88%B7%E7%AB%AF/">
                     <div class="card-image">
@@ -533,9 +527,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -544,6 +538,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -554,25 +549,28 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/21/calss%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">
+                <a href="/2020/09/10/linux%E4%B8%AD%E5%AE%89%E8%A3%85tomcat/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="calss常量池、常量池、运行时常量池和字符串常量池">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="linux中安装tomcat">
                         
-                        <span class="card-title">calss常量池、常量池、运行时常量池和字符串常量池</span>
+                        <span class="card-title">linux中安装tomcat</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近在看jvm，发现了好多常量池，搞不清区别，查看了好多篇博客，简单总结一下。
-Class常量池我们写的每一个Java类被编译后，就会形成一份class文件；class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常
+                            linux部署tomcat
+安装tomcat前需要有java的环境变量
+
+
+安装tomcathttp://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.46/bin/apa
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
                             </span>
                         <span class="publish-author">
                             
